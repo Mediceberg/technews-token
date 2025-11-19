@@ -1,6 +1,8 @@
 [[CURRENCIES]]
-code = "TN"
-issuer = "GBV7DATMFOK2DOR4RT6Y7S6TCKJJXA57TQHNWHPBXQ2MHNC3D36I2HSP"
-name = "TechNews"
-desc = "TechNews token on Pi Testnet."
-image = "https://mediceberg.github.io/technews-token/token.png"
+code = "TN"  # كود التوكن (يظهر في Pi Wallet)
+issuer = "GBV7DATMFOK2DOR4RT6Y7S6TCKJJXA57TQHNWHPBXQ2MHNC3D36I2HSP"   
+name = "TechNews"  
+desc = "TechNews token on Pi Testnet. This is a test token created for demonstration purposes."    
+image = "https://mediceberg.github.io/TN/token.png"    
+status = "active" 
+website = "https://mediceberg.github.io/TN"
