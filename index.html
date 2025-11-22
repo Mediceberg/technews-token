@@ -1,48 +1,52 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechNews | أخبار التكنولوجيا والأسواق المالية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>TechNews | Tech, Finance & Crypto Markets</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
     <style>
-        /* المتغيرات والألوان العصرية */
+        /* Modern & Dark/Vibrant Theme Variables */
         :root {
-            --primary-color: #007bff; /* أزرق مشرق */
-            --secondary-color: #28a745; /* أخضر التوكن */
-            --background-light: #f9f9fc;
-            --text-dark: #2c3e50;
-            --text-light: #ecf0f1;
-            --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            --success-color: #28a745; /* للأخضر (ارتفاع) */
-            --danger-color: #dc3545; /* للأحمر (انخفاض) */
+            --primary-blue: #007bff; /* Main brand color */
+            --secondary-vibrant: #50e3c2; /* Accent color for Reputa */
+            --background-dark: #1e1e2f; /* Dark background */
+            --card-dark: #27293d; /* Slightly lighter card background */
+            --text-light: #f8f8f8; /* Main text color */
+            --text-dim: #b5b5c3; /* Dimmed text */
+            --success-color: #0bb783; /* Green for gains */
+            --danger-color: #f64e60; /* Red for losses */
+            --shadow-vibrant: 0 5px 20px rgba(0, 0, 0, 0.2);
         }
 
-        /* الأنماط الأساسية */
+        /* Base Styles */
         body {
-            font-family: 'Cairo', sans-serif;
-            background-color: var(--background-light);
-            color: var(--text-dark);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-light);
             margin: 0;
             padding: 0;
-            text-align: right;
-            line-height: 1.7;
+            line-height: 1.6;
+            direction: ltr; /* Default English direction */
         }
 
-        /* الحاوية */
+        /* Container */
         .container {
-            width: 95%;
-            max-width: 1300px;
+            width: 90%;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 15px;
         }
 
-        /* الرأس والعلامة التجارية */
+        /* Header and Navigation */
         header {
-            background-color: white;
-            padding: 20px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            background-color: var(--card-dark);
+            box-shadow: var(--shadow-vibrant);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .navbar {
@@ -56,121 +60,148 @@
             align-items: center;
         }
 
-        /* مكان الشعار: تأكد من أن ملف token.jpg موجود في نفس المجلد */
         .logo-section img {
-            width: 50px; 
-            height: 50px;
-            margin-left: 10px;
-            border-radius: 8px;
-            object-fit: contain; /* لضمان ظهور الشعار بشكل صحيح */
+            width: 40px; 
+            height: 40px;
+            margin-right: 10px;
+            object-fit: contain; 
         }
 
         .logo-section h1 {
-            font-size: 2em;
-            color: var(--primary-color);
+            font-size: 1.8em;
+            color: var(--primary-blue);
             margin: 0;
-            font-weight: 900; 
+            font-weight: 800; 
         }
-
-        /* شريط الروابط */
+        
+        /* Navigation Links */
         .nav-links a {
-            color: var(--text-dark);
+            color: var(--text-dim);
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
             margin-left: 20px;
             padding: 8px 15px;
-            border-radius: 5px;
-            transition: color 0.3s, background-color 0.3s;
+            border-radius: 8px;
+            transition: all 0.3s;
         }
 
         .nav-links a:hover {
-            color: var(--primary-color);
-            background-color: #e3f2fd;
+            color: var(--text-light);
+            background-color: rgba(0, 123, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
         }
 
-        /* قسم الدعوة للعمل (CTA) */
-        .cta-section {
-            background: linear-gradient(135deg, #007bff, #0056b3); 
+        /* Language Toggle Button */
+        .lang-toggle {
+            background-color: var(--primary-blue);
             color: white;
-            padding: 60px 0;
+            padding: 8px 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .lang-toggle:hover {
+            background-color: #0056b3;
+        }
+
+        /* Hero/CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--background-dark), var(--card-dark)); 
+            padding: 80px 0;
             text-align: center;
-            box-shadow: var(--card-shadow);
+        }
+
+        .cta-section h2 {
+            font-size: 3em;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+
+        .cta-section p {
+            font-size: 1.2em;
+            color: var(--text-dim);
+            margin-bottom: 40px;
         }
 
         .cta-button {
             display: inline-block;
-            background-color: #ffd700; 
-            color: #333;
-            padding: 15px 35px;
+            background: var(--primary-blue);
+            color: var(--text-light);
+            padding: 15px 40px;
             text-decoration: none;
             border-radius: 50px;
-            font-weight: bold;
+            font-weight: 700;
             font-size: 1.1em;
-            transition: background-color 0.3s ease, transform 0.3s;
-            border: 2px solid #ffd700;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+            border: none;
         }
 
         .cta-button:hover {
-            background-color: #e6c300;
-            transform: translateY(-3px);
+            background: #0056b3;
+            transform: scale(1.05);
         }
-        
-        /* القسم الرئيسي والمحتوى */
+
+        /* Main Content Titles */
         .main-content h2 {
-            font-size: 1.8em;
-            color: var(--primary-color);
-            margin-top: 40px;
-            border-bottom: 3px solid #eee;
-            padding-bottom: 10px;
+            font-size: 2em;
+            color: var(--primary-blue);
+            margin-top: 60px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--secondary-vibrant);
+            padding-left: 15px;
             font-weight: 700;
         }
 
-        /* تنسيق الجداول المالية */
+        /* Market Section (Crypto & Stocks) */
         .market-section {
             display: flex;
             gap: 30px;
-            margin-top: 20px;
-            flex-wrap: wrap; /* للسماح بعرضهم فوق بعض في شاشات الجوال */
+            flex-wrap: wrap;
+            margin-top: 30px;
         }
 
         .market-list {
             flex: 1;
-            min-width: 400px;
-            background-color: white;
+            min-width: 450px; 
+            background-color: var(--card-dark);
             border-radius: 12px;
-            box-shadow: var(--card-shadow);
-            overflow: hidden;
-            padding: 20px;
+            box-shadow: var(--shadow-vibrant);
+            padding: 30px;
+            border-top: 5px solid var(--secondary-vibrant);
         }
-
+        
         .market-list h3 {
-            color: var(--primary-color);
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
+            color: var(--secondary-vibrant);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 15px;
             margin-top: 0;
-            font-size: 1.5em;
+            font-size: 1.8em;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
-            text-align: right;
+            margin-top: 20px;
+            text-align: left;
         }
 
         th, td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 1.1em;
         }
 
         th {
-            background-color: #f2f2f2;
-            color: var(--text-dark);
-            font-weight: bold;
-            text-align: right;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            font-weight: 600;
+            text-align: left;
         }
 
-        /* تنسيق عمود التغير */
         .change-up {
             color: var(--success-color);
             font-weight: bold;
@@ -180,46 +211,95 @@
             color: var(--danger-color);
             font-weight: bold;
         }
-        
-        /* قسم REPUTA و الأخبار - الأنماط كما هي من التحديث السابق */
-        .reputa-section {
-            background-color: white;
-            padding: 30px;
-            border-radius: 12px;
-            margin-top: 40px;
-            box-shadow: var(--card-shadow);
-            border-right: 5px solid var(--secondary-color);
-        }
 
-        .reputa-link {
-            color: var(--secondary-color);
-            text-decoration: none;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 15px;
-        }
-        
+        /* News Grid */
         .news-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
         }
 
         .news-card {
-            background-color: white;
+            background-color: var(--card-dark);
             border-radius: 12px;
-            box-shadow: var(--card-shadow);
-            padding: 20px;
-            border-top: 5px solid var(--primary-color); 
+            box-shadow: var(--shadow-vibrant);
+            padding: 25px;
+            border-left: 5px solid var(--primary-blue);
+            transition: transform 0.3s, border-color 0.3s;
         }
 
+        .news-card:hover {
+            transform: translateY(-5px);
+            border-left: 5px solid var(--secondary-vibrant);
+        }
+
+        .news-card h4 {
+            color: var(--text-light);
+            margin-top: 0;
+            font-size: 1.4em;
+            font-weight: 700;
+        }
+
+        .news-card p {
+            color: var(--text-dim);
+        }
+
+        /* Reputa Section */
+        .reputa-section {
+            background-color: var(--card-dark);
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 60px;
+            box-shadow: var(--shadow-vibrant);
+            border-left: 5px solid var(--secondary-vibrant);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .reputa-section img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+
+        .reputa-content h3 {
+            color: var(--secondary-vibrant);
+            margin-top: 0;
+            font-size: 1.8em;
+        }
+
+        .reputa-content p {
+            color: var(--text-dim);
+        }
+
+        .reputa-link {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 15px;
+            transition: color 0.3s;
+        }
+        
+        .reputa-link:hover {
+            color: var(--secondary-vibrant);
+        }
+
+        /* Footer */
         footer {
             text-align: center;
-            padding: 25px 0;
-            background-color: var(--text-dark);
-            color: var(--text-light);
+            padding: 30px 0;
+            background-color: var(--background-dark);
+            color: var(--text-dim);
             margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
         }
     </style>
 </head>
@@ -228,41 +308,45 @@
     <header>
         <div class="container navbar">
             <div class="logo-section">
-                <img src="token.jpg" alt="TechNews Logo">
+                <img src="1000004949.jpg" alt="TechNews Logo">
                 <h1>TechNews</h1>
             </div>
             <nav class="nav-links">
-                <a href="#">الرئيسية</a>
-                <a href="#markets">الأسواق المالية</a>
+                <a href="#">Home</a>
+                <a href="#markets">Markets</a>
                 <a href="#reputa-section">REPUTA SCORE</a>
-                <a href="#news">الأخبار</a>
+                <a href="#news">News</a>
+                <a href="#" class="lang-toggle"><i class="fas fa-globe"></i> AR</a>
             </nav>
         </div>
     </header>
 
     <section class="cta-section">
         <div class="container">
-            <h2>🌍 كن أول من يعلم! حمل تطبيق TechNews</h2>
-            <p>تابع أحدث تحليلات السوق، وتطورات التكنولوجيا، وأخبار العملات الرقمية لحظة بلحظة.</p>
+            <h2>The Future of Finance, Powered by Tech.</h2>
+            <p>Get instant, curated updates on Cryptocurrencies, Stock Markets, and Decentralized Technology.</p>
+            
             <a href="https://technewseaadcfd8835.pinet.com" class="cta-button">
-                ⚡ اذهب إلى تطبيق TechNews الآن (Pi Browser)
+                <i class="fas fa-bolt"></i> Launch TechNews App (Pi Browser)
             </a>
         </div>
     </section>
 
     <div class="container main-content">
         
-        <h2 id="markets">📊 متابعة حية للأسواق المالية والعملات الرقمية</h2>
+        <h2 id="markets">📊 Live Market Data & Global Indices</h2>
+        <p style="color: var(--danger-color); font-style: italic;">Note: Data below is static (placeholder). Use our App for real-time updates.</p>
+
         <section class="market-section">
             
             <div class="market-list">
-                <h3>💰 العملات الرقمية (Crypto)</h3>
+                <h3><i class="fas fa-coins"></i> Top Cryptocurrencies</h3>
                 <table>
                     <thead>
                         <tr>
-                            <th>العملة</th>
-                            <th>السعر ($)</th>
-                            <th>تغير 24 ساعة</th>
+                            <th>Asset</th>
+                            <th>Price ($)</th>
+                            <th>24h Change</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -291,13 +375,13 @@
             </div>
 
             <div class="market-list">
-                <h3>🏛️ مؤشرات الأسهم العالمية (Stocks)</h3>
+                <h3><i class="fas fa-chart-line"></i> Major Stock Indices</h3>
                 <table>
                     <thead>
                         <tr>
-                            <th>المؤشر/السهم</th>
-                            <th>القيمة</th>
-                            <th>تغير اليوم</th>
+                            <th>Index/Stock</th>
+                            <th>Value</th>
+                            <th>Daily Change</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -326,38 +410,40 @@
             </div>
         </section>
 
-
         <section class="reputa-section" id="reputa-section">
-            <h3 style="display: flex; align-items: center;"><span style="font-size: 1.5em; margin-left: 10px;">🛡️</span> مشروع REPUTA SCORE وشرح التوكن</h3>
-            <p>
-                **REPUTA** هو توكن يركز على قياس **السمعة والموثوقية**، مبني لتجارب الائتمان اللامركزي وطرائق التصنيف. تم إصداره على شبكة **Pi Testnet** لأغراض الاختبار والتكامل مع المحافظ و Pi DEX. يهدف المشروع إلى بناء نظام ثقة لا مركزي متكامل.
-            </p>
-            <a href="https://reputa3833.pinet.com" target="_blank" class="reputa-link">
-                ➡️ انطلق إلى موقع REPUTA
-            </a>
+            <img src="1000000219.png" alt="REPUTA Logo">
+            <div class="reputa-content">
+                <h3>Partner Project: REPUTA SCORE</h3>
+                <p>
+                    **REPUTA** is a token focused on measuring **reputation and reliability**, built for decentralized credit experiences and rating methodologies. It was issued on the **Pi Testnet** for testing and integration with Wallets and Pi DEX.
+                </p>
+                <a href="https://reputa3833.pinet.com" target="_blank" class="reputa-link">
+                    <i class="fas fa-arrow-right"></i> Visit REPUTA Website
+                </a>
+            </div>
         </section>
 
-        <h2 id="news">🚀 أهم العناوين: تكنولوجيا، عملات رقمية، أسواق مالية</h2>
+        <h2 id="news">📰 Latest News Headlines</h2>
         <div class="news-grid">
             
             <div class="news-card">
-                <h4>البيتكوين يتجاوز حاجز الـ 70 ألف دولار.. هل بدأت الموجة الكبرى؟</h4>
-                <p>تحليل لأسباب الارتفاع المفاجئ وتوقعات المحللين للأشهر القادمة بعد قرار اعتماد صناديق الاستثمار الفورية.</p>
+                <h4>Crypto: Bitcoin Breaks $70k Barrier - Is the Bull Run Starting?</h4>
+                <p>Analysts predict a major surge following the institutional adoption of spot ETF funds. Detailed market outlook included.</p>
             </div>
             
             <div class="news-card">
-                <h4>ثورة الذكاء الاصطناعي: جوجل تطلق نموذج Gemini 2.5 بأداء غير مسبوق</h4>
-                <p>مراجعة شاملة لقدرات النموذج الجديد في معالجة الصور، الفيديو، والنصوص، وتأثيره على قطاع البرمجيات.</p>
+                <h4>Technology: Google Launches Gemini 2.5 - New AI Capabilities Unveiled</h4>
+                <p>A comprehensive review of the new AI model's impressive ability to process visual, video, and textual content.</p>
             </div>
             
             <div class="news-card">
-                <h4>أسواق الأسهم العالمية: ترقب لتقرير التضخم الأمريكي وتأثيره على مؤشرات الأسهم</h4>
-                <p>نظرة اقتصادية على العلاقة بين معدلات الفائدة ومستقبل الاستثمار في أسواق المال الرئيسية.</p>
+                <h4>Finance: US Inflation Report Watch - Impact on Global Stock Market Indices</h4>
+                <p>An economic overview of the Federal Reserve's interest rate decisions and their effect on major stock exchanges.</p>
             </div>
 
             <div class="news-card">
-                <h4>تحديثات تقنية Pi Network: الإطلاق المتوقع للمرحلة المفتوحة (Open Mainnet)</h4>
-                <p>تفاصيل حول خطة الفريق الأساسي للشبكة وإجراءات التوثيق (KYC) اللازمة للمستخدمين.</p>
+                <h4>Pi Network: Core Team Provides Crucial Updates on Open Mainnet Launch</h4>
+                <p>New guidelines regarding KYC procedures and technical preparations for the network's next pivotal phase.</p>
             </div>
             
         </div>
@@ -365,7 +451,7 @@
     </div>
 
     <footer>
-        <p>TechNews | كل أخبار التكنولوجيا تحت سقف واحد &copy; 2025</p>
+        <p>TechNews | Your Source for Tech & Financial Intelligence &copy; 2025</p>
     </footer>
 
 </body>
