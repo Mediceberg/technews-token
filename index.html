@@ -1,211 +1,223 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TechNews — الأسواق الحية والأخبار</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;800&display=swap" rel="stylesheet">
+<title>TechNews — Live Markets & Crypto</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 <style>
 :root{
-  --primary-blue:#007bff; --secondary-vibrant:#50e3c2; --background-dark:#1e1e2f; --card-dark:#27293d; --text-light:#e8eef7; --text-dim:#b5b5c3;
+  --primary:#007bff; --secondary:#50e3c2; --bg:#1e1e2f; --card:#27293d; --text:#e8eef7; --dim:#b5b5c3;
   --success:#0bb783; --danger:#f64e60; --shadow:0 5px 20px rgba(0,0,0,0.2);
 }
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Cairo',sans-serif}
-body{background:var(--background-dark);color:var(--text-light);line-height:1.6}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',sans-serif}
+body{background:var(--bg);color:var(--text);line-height:1.6}
 a{text-decoration:none;color:inherit}
 .container{width:90%;max-width:1400px;margin:0 auto;padding:0 15px}
 
 /* Header */
-header{background:var(--card-dark);box-shadow:var(--shadow);padding:18px 0;position:sticky;top:0;z-index:1000}
+header{background:var(--card);padding:18px 0;position:sticky;top:0;z-index:1000;box-shadow:var(--shadow)}
 .navbar{display:flex;justify-content:space-between;align-items:center}
 .logo-section{display:flex;align-items:center}
-.logo-section img{width:48px;height:48px;margin-left:12px;object-fit:contain;border-radius:8px}
-.logo-section h1{font-size:1.6em;color:var(--primary-blue);font-weight:800}
-.nav-links a{margin-right:18px;padding:8px 14px;border-radius:8px;transition:all .25s;font-weight:600}
-.nav-links a:hover{background:rgba(0,123,255,0.08)}
-.lang-toggle{background:var(--primary-blue);color:white;padding:8px 12px;border-radius:8px}
+.logo-section img{width:48px;height:48px;margin-right:12px;border-radius:8px;object-fit:contain}
+.logo-section h1{color:var(--primary);font-weight:800;font-size:1.6em}
+.nav-links a{margin-left:18px;padding:8px 14px;border-radius:8px;transition:all .25s;font-weight:600;color:var(--dim)}
+.nav-links a:hover{background:rgba(0,123,255,0.08);color:var(--text)}
+#langToggle{background:var(--primary);color:#fff}
 
 /* CTA */
-.cta-section{background:linear-gradient(135deg,var(--primary-blue),#0056b3);padding:72px 0;text-align:center}
-.cta-section h2{font-size:2em;margin-bottom:12px}
-.cta-button{display:inline-block;background:#ffd700;color:#111;padding:14px 36px;border-radius:50px;font-weight:800;box-shadow:0 6px 18px rgba(255,215,0,0.25)}
+.cta-section{background:linear-gradient(135deg,var(--primary),#0056b3);padding:72px 0;text-align:center}
+.cta-button{background:#ffd700;color:#111;padding:14px 36px;border-radius:50px;font-weight:800;box-shadow:0 6px 18px rgba(255,215,0,0.25)}
 
 /* Main content */
 .main-content{padding:28px 0}
-.main-content h2{font-size:1.9em;color:var(--text-light);margin:40px 0 18px;border-right:5px solid var(--secondary-vibrant);padding-right:15px}
+.main-content h2{font-size:1.9em;color:var(--text);margin:40px 0 18px;border-left:5px solid var(--secondary);padding-left:15px}
 
 .market-section{display:flex;gap:30px;flex-wrap:wrap}
-.market-list{flex:1;min-width:420px;background:var(--card-dark);border-radius:12px;box-shadow:var(--shadow);padding:30px}
-.market-list h3{color:var(--secondary-vibrant);border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:12px}
+.market-list{flex:1;min-width:420px;background:var(--card);border-radius:12px;box-shadow:var(--shadow);padding:30px}
+.market-list h3{color:var(--secondary);border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:12px}
 table{width:100%;border-collapse:collapse}
 th,td{padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
-th{color:var(--text-dim);text-align:left}
+th{color:var(--dim);text-align:left}
 .change-up{color:var(--success);font-weight:700}
 .change-down{color:var(--danger);font-weight:700}
 
-/* News grid */
+/* News */
 .news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:22px;margin-top:18px}
-.news-card{background:var(--card-dark);border-radius:12px;padding:22px;border-right:5px solid var(--primary-blue);transition:transform .25s}
-.news-card:hover{transform:translateY(-6px);border-right-color:var(--secondary-vibrant)}
-.news-card h4{color:var(--text-light);margin:0}
-.news-card p{color:var(--text-dim)}
+.news-card{background:var(--card);border-radius:12px;padding:22px;border-left:5px solid var(--primary);transition:transform .25s}
+.news-card:hover{transform:translateY(-6px);border-left-color:var(--secondary)}
+.news-card h4{color:var(--text);margin:0;font-size:1.2em}
+.news-card p{color:var(--dim);margin-top:6px;font-size:0.95em}
 
 /* Partnerships */
-.partnerships-section{margin-top:40px;padding:30px;background:var(--card-dark);border-radius:12px;text-align:center}
 .partnerships-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:24px;margin-top:18px}
-.partner-card{width:200px;padding:20px;background:var(--background-dark);border-radius:10px;transition:transform .25s;border:2px solid var(--text-dim)}
-.partner-card:hover{transform:scale(1.05);box-shadow:0 0 18px var(--primary-blue);border-color:var(--primary-blue)}
-.partner-card i{font-size:2.2em;color:var(--secondary-vibrant);margin-bottom:12px}
-.partner-card h4{color:var(--text-light);margin:6px 0}
-.partner-card span{color:var(--text-dim)}
+.partner-card{width:200px;padding:20px;background:var(--bg);border-radius:10px;transition:transform .25s;border:2px solid var(--dim)}
+.partner-card:hover{transform:scale(1.05);box-shadow:0 0 18px var(--primary);border-color:var(--primary)}
+.partner-card i{font-size:2.2em;color:var(--secondary);margin-bottom:12px}
+.partner-card h4{color:var(--text);margin:6px 0;font-size:1em}
+.partner-card span{color:var(--dim);font-size:0.85em}
 
 /* Reputa */
-.reputa-card{background:var(--card-dark);padding:24px;border-radius:12px;margin-top:20px;box-shadow:var(--shadow);border-right:5px solid var(--secondary-vibrant);display:flex;align-items:center;gap:18px}
+.reputa-card{background:var(--card);padding:24px;border-radius:12px;margin-top:20px;box-shadow:var(--shadow);border-left:5px solid var(--secondary);display:flex;align-items:center;gap:18px}
 .reputa-card img{width:84px;height:84px;object-fit:contain;border-radius:10px}
-.reputa-content h3{color:var(--secondary-vibrant);margin:0;font-size:1.4em}
-.reputa-content p{color:var(--text-dim)}
-.reputa-link{color:var(--primary-blue);font-weight:700;margin-top:10px;display:inline-block}
+.reputa-content h3{color:var(--secondary);margin:0;font-size:1.3em}
+.reputa-content p{color:var(--dim);font-size:0.95em;margin-top:6px}
+.reputa-link{color:var(--primary);font-weight:700;margin-top:10px;display:inline-block}
 
-footer{text-align:center;padding:30px 0;background:var(--background-dark);color:var(--text-dim);margin-top:40px;border-top:1px solid rgba(255,255,255,0.04)}
+/* Footer */
+footer{text-align:center;padding:30px 0;background:var(--bg);color:var(--dim);margin-top:40px;border-top:1px solid rgba(255,255,255,0.04)}
 
+/* Animations */
 .fade-in{animation:fadeIn .6s ease both}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
+/* Responsive */
 @media (max-width:900px){.market-section{flex-direction:column}.logo-section h1{font-size:1.2rem}}
 </style>
 </head>
-
 <body>
 
 <header>
- <div class="container navbar">
-   <div class="logo-section">
-     <img id="siteLogo" src="https://mediceberg.github.io/RP/logo.png" alt="TechNews Logo">
-     <h1>TechNews</h1>
-   </div>
-   <nav class="nav-links">
-     <a href="#">الرئيسية</a>
-     <a href="#markets">الأسواق</a>
-     <a href="#partnerships">الشركاء</a>
-     <a href="#news">الأخبار</a>
-     <a href="index.html" class="lang-toggle"><i class="fas fa-globe"></i>&nbsp;EN</a>
-   </nav>
- </div>
+  <div class="container navbar">
+    <div class="logo-section">
+      <img src="https://mediceberg.github.io/TN/token.png" alt="TechNews Logo">
+      <h1>TechNews</h1>
+    </div>
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#markets">Markets</a>
+      <a href="#partners">Partners</a>
+      <a href="#news">News</a>
+      <a href="#" id="langToggle"><i class="fas fa-globe"></i>&nbsp;EN/AR</a>
+    </nav>
+  </div>
 </header>
 
 <section class="cta-section">
- <div class="container">
-   <h2>مستقبل التمويل، مدعوم بالتكنولوجيا.</h2>
-   <p>احصل على تحديثات فورية حول العملات الرقمية، الأسهم والتقنية.</p>
-   <a class="cta-button" href="https://technewseaadcfd8835.pinet.com" target="_blank"><i class="fas fa-bolt"></i>&nbsp; افتح TechNews على Pi Browser</a>
- </div>
+  <div class="container">
+    <h2>Future of Finance, Powered by Tech</h2>
+    <p>Instant updates on Crypto, Stocks & Decentralized Tech.</p>
+    <a class="cta-button" href="#" target="_blank"><i class="fas fa-bolt"></i>&nbsp;Launch App</a>
+  </div>
 </section>
 
 <div class="container main-content">
 
-<h2 id="markets">📊 الأسواق العالمية</h2>
-<p style="color:var(--danger);font-style:italic">البيانات أدناه: العملات الرقمية مباشرة من CoinGecko، والأسهم مثال توضيحي.</p>
+  <h2 id="markets" data-key="marketsTitle">📊 Live Market Data</h2>
 
-<section class="market-section">
+  <section class="market-section">
 
-  <div class="market-list fade-in">
-    <h3><i class="fas fa-coins"></i> أهم العملات الرقمية</h3>
-    <table>
-      <thead>
-        <tr><th>الأصل</th><th>السعر ($)</th><th>تغير 24س</th></tr>
-      </thead>
-      <tbody id="cryptoRows"></tbody>
-    </table>
+    <div class="market-list fade-in">
+      <h3 data-key="cryptoTitle"><i class="fas fa-coins"></i> Top Cryptocurrencies</h3>
+      <table>
+        <thead><tr><th>Asset</th><th>Price</th><th>24h</th></tr></thead>
+        <tbody id="cryptoRows"></tbody>
+      </table>
+    </div>
+
+    <div class="market-list fade-in">
+      <h3 data-key="stocksTitle"><i class="fas fa-chart-line"></i> Major Stocks</h3>
+      <table>
+        <thead><tr><th>Stock/Index</th><th>Value</th><th>Change</th></tr></thead>
+        <tbody>
+          <tr><td>S&P 500</td><td id="sp500">—</td><td id="sp500c">—</td></tr>
+          <tr><td>Nasdaq</td><td id="nasdaq">—</td><td id="nasdaqc">—</td></tr>
+          <tr><td>Apple (AAPL)</td><td id="aapl">—</td><td id="aaplc">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </section>
+
+  <!-- Reputa Card -->
+  <div class="reputa-card fade-in">
+    <img src="https://mediceberg.github.io/RP/logo.png" alt="Reputa">
+    <div class="reputa-content">
+      <h3 data-key="reputaTitle">REPUTA SCORE: Decentralized Credit</h3>
+      <p data-key="reputaDesc">REPUTA token measures reputation & reliability, built for Pi Testnet integration.</p>
+      <a class="reputa-link" href="#" target="_blank" data-key="reputaBtn">Visit REPUTA</a>
+    </div>
   </div>
 
-  <div class="market-list fade-in">
-    <h3><i class="fas fa-chart-line"></i> مؤشرات الأسهم الرئيسية</h3>
-    <table>
-      <thead><tr><th>المؤشر/السهم</th><th>القيمة</th><th>التغير اليومي</th></tr></thead>
-      <tbody>
-        <tr><td>S&P 500</td><td id="sp500">—</td><td id="sp500c">—</td></tr>
-        <tr><td>Nasdaq</td><td id="nasdaq">—</td><td id="nasdaqc">—</td></tr>
-        <tr><td>Apple (AAPL)</td><td id="aapl">—</td><td id="aaplc">—</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-</section>
-
-<h2 id="partnerships">🤝 شركاء Pi Ecosystem</h2>
-
-<div class="reputa-card fade-in">
-  <img id="reputaLogo" src="https://mediceberg.github.io/RP/logo.png">
-  <div class="reputa-content">
-    <h3>REPUTA SCORE: السمعة اللامركزية</h3>
-    <p>توكين <strong>REPUTA</strong> للسمعة والموثوقية على Pi Testnet.</p>
-    <a class="reputa-link" href="https://reputa3833.pinet.com" target="_blank"><i class="fas fa-arrow-right"></i>&nbsp; زيارة REPUTA</a>
-  </div>
-</div>
-
-<section class="partnerships-section">
+  <!-- Partnerships -->
+  <h2 id="partners" data-key="partnersTitle">🤝 Integrated Pi Apps</h2>
   <div class="partnerships-grid">
-    <a class="partner-card" href="https://fastdeliveryaffd0592.pinet.com" target="_blank"><i class="fas fa-shipping-fast"></i><h4>FastDelivery</h4><span>الخدمات اللوجستية</span></a>
-    <a class="partner-card" href="https://trustlesscircle0036.pinet.com" target="_blank"><i class="fas fa-users-cog"></i><h4>Trustless Circle</h4><span>الثقة اللامركزية</span></a>
-    <a class="partner-card" href="https://smartpaybfdddefd7151.pinet.com" target="_blank"><i class="fas fa-credit-card"></i><h4>SmartPay</h4><span>الدفع بالعملات الرقمية</span></a>
-    <a class="partner-card" href="https://technewseaadcfd8835.pinet.com" target="_blank"><i class="fas fa-globe"></i><h4>TechNews</h4><span>التطبيق الرئيسي</span></a>
+    <a class="partner-card" href="#"><i class="fas fa-shipping-fast"></i><h4>FastDelivery</h4><span>Logistics</span></a>
+    <a class="partner-card" href="#"><i class="fas fa-users-cog"></i><h4>Trustless Circle</h4><span>Decentralized Trust</span></a>
+    <a class="partner-card" href="#"><i class="fas fa-credit-card"></i><h4>SmartPay</h4><span>Crypto Payments</span></a>
+    <a class="partner-card" href="#"><i class="fas fa-globe"></i><h4>TechNews</h4><span>Main App</span></a>
   </div>
-</section>
 
-<h2 id="news">📰 آخر الأخبار</h2>
-<div class="news-grid">
-  <div class="news-card"><h4>البيتكوين يصل إلى 70 ألف $</h4><p>اعتماد المؤسسات يؤدي إلى ارتفاع الأسعار.</p></div>
-  <div class="news-card"><h4>إطلاق Google Gemini 2.5</h4><p>قدرات جديدة في الذكاء الاصطناعي.</p></div>
-  <div class="news-card"><h4>تأثير التضخم الأمريكي</h4><p>مراجعة تأثيره على الأسهم العالمية.</p></div>
-  <div class="news-card"><h4>تحديثات Pi Network</h4><p>إعلان إرشادات إطلاق Mainnet.</p></div>
-</div>
+  <!-- News -->
+  <h2 id="news" data-key="newsTitle">📰 Latest News</h2>
+  <div class="news-grid" id="newsFeed"></div>
 
 </div>
 
 <footer>
-<p>TechNews &copy; 2025 | Mediceberg</p>
+  <p>TechNews | © 2025</p>
 </footer>
 
 <script>
-// Live crypto fetch from CoinGecko
-const cryptoIds = ['bitcoin','ethereum','solana'];
-
-function formatUSD(n){ return n==null ? '—' : '$'+Number(n).toLocaleString(undefined,{maximumFractionDigits:2}); }
-function round(n,dec=2){ return Math.round((n||0)*Math.pow(10,dec))/Math.pow(10,dec); }
-
+// Crypto fetch (CoinGecko)
+const cryptoIds=['bitcoin','ethereum','solana'];
 async function fetchCrypto(){
-  const ids = cryptoIds.join('%2C');
-  const endpoint = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${ids}&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h`;
-  try{
-    const r = await fetch(endpoint);
-    const data = await r.json();
-    renderCrypto(data);
-  }catch(e){ console.error(e); renderCrypto([]); }
+  const r = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${cryptoIds.join(',')}`);
+  const data=await r.json(); renderCrypto(data);
 }
-
 function renderCrypto(list){
-  const tbody = document.getElementById('cryptoRows');
+  const tbody=document.getElementById('cryptoRows');
   tbody.innerHTML='';
-  if(!list || list.length===0){
-    list = [
-      {name:'Bitcoin',symbol:'BTC',current_price:70500.23,price_change_percentage_24h:1.56,image:''},
-      {name:'Ethereum',symbol:'ETH',current_price:4120.78,price_change_percentage_24h:-0.89,image:''},
-      {name:'Solana',symbol:'SOL',current_price:152.45,price_change_percentage_24h:-1.25,image:''}
-    ];
-  }
-  list.forEach(c => {
-    const tr = document.createElement('tr');
-    const change = c.price_change_percentage_24h || 0;
-    const cls = change>=0?'change-up':'change-down';
-    tr.innerHTML = `<td style="display:flex;gap:12px;align-items:center;justify-content:flex-end"><div><div style='font-weight:700'>${c.name||'—'}</div><div style='color:var(--text-dim);font-size:0.85rem'>${(c.symbol||'').toUpperCase()}</div></div><div style="width:36px;height:36px;border-radius:8px;overflow:hidden;background:#0b0f19;margin-left:12px"><img src="${c.image||''}" alt="${c.symbol||''}" style="width:100%;height:100%;object-fit:contain" onerror="this.parentNode.textContent='${(c.symbol||'').toUpperCase()}';this.style.display='none'"></div></td><td>${formatUSD(c.current_price)}</td><td class='${cls}'>${(change>=0?'+':'')}${round(change,2)}%</td>`;
+  list.forEach(c=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td style="display:flex;gap:12px;align-items:center">
+      <img src="${c.image}" style="width:36px;height:36px;border-radius:8px"/>
+      <div><strong>${c.name}</strong><br><small>${c.symbol.toUpperCase()}</small></div>
+    </td>
+    <td>${c.current_price.toLocaleString('en-US',{style:'currency',currency:'USD'})}</td>
+    <td class="${c.price_change_percentage_24h>=0?'change-up':'change-down'}">
+      ${c.price_change_percentage_24h.toFixed(2)}%
+    </td>`;
     tbody.appendChild(tr);
   });
 }
+fetchCrypto(); setInterval(fetchCrypto,30000);
 
-fetchCrypto();
-setInterval(fetchCrypto,30000);
+// News fetch example (JSON)
+async function fetchNews(){
+  const r=await fetch('https://api.example.com/technews'); // ضع رابط API حقيقي
+  const data=await r.json();
+  const newsGrid=document.getElementById('newsFeed');
+  newsGrid.innerHTML='';
+  data.articles.forEach(a=>{
+    const card=document.createElement('div');
+    card.className='news-card fade-in';
+    card.innerHTML=`<h4>${a.title}</h4><p>${a.description}</p>`;
+    newsGrid.appendChild(card);
+  });
+}
+fetchNews(); setInterval(fetchNews,60000);
+
+// Language toggle EN/AR
+const texts={
+  en:{marketsTitle:"📊 Live Market Data",cryptoTitle:"Top Cryptocurrencies",stocksTitle:"Major Stocks",
+      partnersTitle:"🤝 Integrated Pi Apps",reputaTitle:"REPUTA SCORE: Decentralized Credit",
+      reputaDesc:"REPUTA token measures reputation & reliability, built for Pi Testnet integration.",
+      reputaBtn:"Visit REPUTA",newsTitle:"📰 Latest News"},
+  ar:{marketsTitle:"📊 بيانات السوق الحية",cryptoTitle:"أهم العملات الرقمية",stocksTitle:"الأسهم الرئيسية",
+      partnersTitle:"🤝 تطبيقات Pi المتكاملة",reputaTitle:"REPUTA: السمعة اللامركزية",
+      reputaDesc:"توكن REPUTA يقيس السمعة والموثوقية، مخصص لتكامل Pi Testnet.",
+      reputaBtn:"زيارة REPUTA",newsTitle:"📰 آخر الأخبار"}
+};
+let currentLang='en';
+document.getElementById('langToggle').addEventListener('click',()=>{
+  currentLang=currentLang==='en'?'ar':'en';
+  document.body.dir=currentLang==='ar'?'rtl':'ltr';
+  document.querySelectorAll('[data-key]').forEach(el=>{
+    const key=el.getAttribute('data-key'); el.textContent=texts[currentLang][key];
+  });
+});
 </script>
 
 </body>
