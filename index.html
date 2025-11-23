@@ -3,76 +3,151 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>TechNews — Live Markets (EN / AR)</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
+<title>TechNews — Live Markets</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 :root{
-  --primary-blue:#007bff; --secondary-vibrant:#50e3c2; --background-dark:#1e1e2f; --card-dark:#27293d; --text-light:#e8eef7; --text-dim:#b5b5c3;
-  --success:#0bb783; --danger:#f64e60; --shadow:0 5px 20px rgba(0,0,0,0.2);
+  --primary: #3b82f6;
+  --primary-glow: rgba(59, 130, 246, 0.5);
+  --secondary: #10b981;
+  --bg-dark: #0f172a;
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --border: rgba(255,255,255,0.08);
+  --font-en: 'Inter', sans-serif;
+  --font-ar: 'Cairo', sans-serif;
 }
+
 *{box-sizing:border-box}
-body{margin:0;font-family:'Inter',sans-serif;background:var(--background-dark);color:var(--text-light);line-height:1.6}
+body{
+  margin:0;
+  font-family: var(--font-en);
+  background-color: var(--bg-dark);
+  background-image: radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(16, 185, 129, 0.08), transparent 25%);
+  color: var(--text-main);
+  line-height:1.6;
+  transition: all 0.3s ease;
+}
+
+/* Arabic Mode Overrides */
+html[lang="ar"] body { font-family: var(--font-ar); }
+html[lang="ar"] .logo-section { margin-right: 0; margin-left: auto; }
+
 a{text-decoration:none}
-.container{width:90%;max-width:1400px;margin:0 auto;padding:0 15px}
+.container{width:92%;max-width:1200px;margin:0 auto;padding:0 15px}
 
-/* Header (restored structure similar to original) */
-header{background-color:var(--card-dark);box-shadow:var(--shadow);padding:18px 0;position:sticky;top:0;z-index:1000}
+/* Header */
+header{
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  position:sticky;top:0;z-index:1000;
+  padding: 15px 0;
+}
 .navbar{display:flex;justify-content:space-between;align-items:center}
-.logo-section{display:flex;align-items:center}
-.logo-section img{width:48px;height:48px;margin-right:12px;object-fit:contain;border-radius:8px}
-.logo-section h1{font-size:1.6em;color:var(--primary-blue);margin:0;font-weight:800}
-.nav-links a{color:var(--text-dim);font-weight:600;margin-left:18px;padding:8px 14px;border-radius:8px;transition:all .25s}
-.nav-links a:hover{color:var(--text-light);background-color:rgba(0,123,255,0.08)}
-.lang-toggle{background-color:var(--primary-blue);color:white;padding:8px 12px;border-radius:8px}
+.logo-section{display:flex;align-items:center;gap:12px}
+.logo-section img{width:40px;height:40px;border-radius:8px;}
+.logo-section h1{font-size:1.5em;background: linear-gradient(90deg, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin:0;font-weight:800}
 
-/* CTA */
-.cta-section{background:linear-gradient(135deg,var(--primary-blue),#0056b3);padding:72px 0;text-align:center}
-.cta-button{display:inline-block;background:#ffd700;color:#111;padding:14px 36px;border-radius:50px;font-weight:800;box-shadow:0 6px 18px rgba(255,215,0,0.25)}
+.nav-links { display: flex; align-items: center; gap: 20px; }
+.nav-links a{color:var(--text-muted);font-weight:600;font-size: 0.95rem; transition:0.3s}
+.nav-links a:hover{color:var(--primary)}
 
-/* Main */
-.main-content{padding:28px 0}
-.main-content h2{font-size:1.9em;color:var(--text-light);margin:40px 0 18px;border-left:5px solid var(--secondary-vibrant);padding-left:15px}
+.lang-btn {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 8px;
+  font-family: inherit;
+  transition: 0.3s;
+}
+.lang-btn:hover { background: var(--primary); border-color: var(--primary); }
 
-.market-section{display:flex;gap:30px;flex-wrap:wrap}
-.market-list{flex:1;min-width:420px;background:var(--card-dark);border-radius:12px;box-shadow:var(--shadow);padding:30px}
-.market-list h3{color:var(--secondary-vibrant);border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:12px}
-table{width:100%;border-collapse:collapse}
-th,td{padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
-th{color:var(--text-dim);text-align:left}
-.change-up{color:var(--success);font-weight:700}
-.change-down{color:var(--danger);font-weight:700}
+/* Hero Section */
+.hero { text-align: center; padding: 80px 0 60px; }
+.hero h2 { font-size: 2.8em; margin-bottom: 15px; background: linear-gradient(135deg, #fff 0%, #3b82f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p { font-size: 1.1em; color: var(--text-muted); max-width: 600px; margin: 0 auto 30px; }
+.cta-button {
+  background: var(--primary);
+  color: white;
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-weight: 700;
+  box-shadow: 0 0 20px var(--primary-glow);
+  transition: transform 0.2s;
+  display: inline-block;
+}
+.cta-button:hover { transform: translateY(-2px); box-shadow: 0 0 30px var(--primary-glow); }
 
-.news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:22px;margin-top:18px}
-.news-card{background:var(--card-dark);border-radius:12px;padding:22px;border-left:5px solid var(--primary-blue);transition:transform .25s}
-.news-card:hover{transform:translateY(-6px);border-left-color:var(--secondary-vibrant)}
-.news-card h4{color:var(--text-light);margin:0}
-.news-card p{color:var(--text-dim)}
+/* Section Titles */
+.section-title { font-size: 1.8em; margin: 60px 0 30px; display: flex; align-items: center; gap: 10px; }
+.section-title i { color: var(--primary); }
 
-.partnerships-section{margin-top:40px;padding:30px;background:var(--card-dark);border-radius:12px;text-align:center}
-.partnerships-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:24px;margin-top:18px}
-.partner-card{width:200px;padding:20px;background:var(--background-dark);border-radius:10px;transition:transform .25s;border:2px solid var(--text-dim)}
-.partner-card:hover{transform:scale(1.05);box-shadow:0 0 18px var(--primary-blue);border-color:var(--primary-blue)}
-.partner-card i{font-size:2.2em;color:var(--secondary-vibrant);margin-bottom:12px}
-.partner-card h4{color:var(--text-light);margin:6px 0}
-.partner-card span{color:var(--text-dim)}
+/* Markets */
+.market-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; }
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 25px;
+  backdrop-filter: blur(5px);
+}
+table { width: 100%; border-collapse: collapse; }
+th { text-align: start; color: var(--text-muted); font-size: 0.85em; padding-bottom: 15px; border-bottom: 1px solid var(--border); }
+td { padding: 15px 0; border-bottom: 1px solid var(--border); font-weight: 600; }
+.up { color: var(--secondary); }
+.down { color: #ef4444; }
 
-/* Reputa card */
-.reputa-card{background:var(--card-dark);padding:24px;border-radius:12px;margin-top:20px;box-shadow:var(--shadow);border-left:5px solid var(--secondary-vibrant);display:flex;align-items:center;gap:18px}
-.reputa-card img{width:84px;height:84px;object-fit:contain;border-radius:10px}
-.reputa-content h3{color:var(--secondary-vibrant);margin:0;font-size:1.4em}
-.reputa-content p{color:var(--text-dim)}
-.reputa-link{color:var(--primary-blue);font-weight:700;margin-top:10px;display:inline-block}
+/* Partnerships (Logos) */
+.partners-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px; margin-top: 20px; }
+.partner-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.partner-card:hover { border-color: var(--primary); transform: translateY(-5px); background: rgba(30, 41, 59, 0.9); }
+.partner-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain; /* Ensures logos fit perfectly */
+  margin-bottom: 15px;
+  border-radius: 12px;
+  /* background: rgba(255,255,255,0.05); Optional: subtle bg for logo box */
+  padding: 5px;
+}
+.partner-card h4 { margin: 0; font-size: 1rem; color: #fff; }
+.partner-card span { font-size: 0.8rem; color: var(--text-muted); margin-top: 5px; display: block; }
 
-footer{text-align:center;padding:30px 0;background:var(--background-dark);color:var(--text-dim);margin-top:40px;border-top:1px solid rgba(255,255,255,0.04)}
+/* News */
+.news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.news-item { background: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border); transition: 0.3s; }
+.news-item:hover { border-color: var(--secondary); }
+.news-item h4 { margin: 0 0 10px 0; line-height: 1.4; }
+.news-item p { font-size: 0.9em; color: var(--text-muted); margin: 0; }
 
-/* subtle animations */
-.fade-in{animation:fadeIn .6s ease both}
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+/* Footer */
+footer { margin-top: 80px; padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); }
+.dev-credit { color: var(--primary); font-weight: 700; margin-top: 8px; display: block; font-size: 0.9em; }
 
-/* responsive */
-@media (max-width:900px){.market-section{flex-direction:column}.logo-section h1{font-size:1.2rem}}
-
+/* Responsive */
+@media(max-width: 768px) {
+  .hero h2 { font-size: 2em; }
+  .navbar { flex-direction: column; gap: 15px; }
+  .nav-links { width: 100%; justify-content: center; flex-wrap: wrap; }
+}
 </style>
 </head>
 <body>
@@ -80,193 +155,213 @@ footer{text-align:center;padding:30px 0;background:var(--background-dark);color:
 <header>
   <div class="container navbar">
     <div class="logo-section">
-      <!-- Logo fixed: use provided image as primary source and local fallback -->
-      <img id="siteLogo" src="https://mediceberg.github.io/RP/logo.png" alt="TechNews Logo" onerror="this.onerror=null;this.src='1000004949.jpg'">
+      <img src="https://mediceberg.github.io/RP/logo.png" onerror="this.src='https://placehold.co/40x40/3b82f6/white?text=TN'" alt="Logo">
       <h1>TechNews</h1>
     </div>
-
     <nav class="nav-links">
-      <a href="#">Home</a>
-      <a href="#markets">Markets</a>
-      <a href="#partnerships">Partnerships</a>
-      <a href="#news">News</a>
-      <a href="index_ar.html" class="lang-toggle"><i class="fas fa-globe"></i>&nbsp;AR</a>
+      <a href="#" data-i18n="home">Home</a>
+      <a href="#markets" data-i18n="markets">Markets</a>
+      <a href="#ecosystem" data-i18n="partners">Ecosystem</a>
+      <a href="#news" data-i18n="news">News</a>
+      <button onclick="toggleLang()" class="lang-btn">
+        <i class="fas fa-globe"></i> <span id="langText">العربية</span>
+      </button>
     </nav>
   </div>
 </header>
 
-<section class="cta-section">
-  <div class="container">
-    <h2>The Future of Finance, Powered by Tech.</h2>
-    <p>Get instant, curated updates on Cryptocurrencies, Stock Markets, and Decentralized Technology.</p>
-    <a class="cta-button" href="https://technewseaadcfd8835.pinet.com" target="_blank"><i class="fas fa-bolt"></i>&nbsp; Launch TechNews on Pi Browser</a>
-  </div>
+<section class="hero container">
+  <h2 data-i18n="hero_title">The Future of Finance & Tech</h2>
+  <p data-i18n="hero_desc">Real-time market data, decentralized ecosystem updates, and breaking news powered by the Pi Network.</p>
+  <a href="https://technewseaadcfd8835.pinet.com" class="cta-button" target="_blank">
+    <i class="fas fa-rocket"></i> <span data-i18n="cta_btn">Launch TechNews App</span>
+  </a>
 </section>
 
-<div class="container main-content">
+<div class="container">
 
-  <h2 id="markets">📊 Live Market Data & Global Indices</h2>
-  <p style="color:var(--danger);font-style:italic">Note: Data below is live from CoinGecko for crypto — stocks are placeholder unless you add an API key.</p>
-
-  <section class="market-section">
-
-    <div class="market-list fade-in">
-      <h3><i class="fas fa-coins"></i> Top Cryptocurrencies</h3>
+  <h3 class="section-title" id="markets"><i class="fas fa-chart-pie"></i> <span data-i18n="market_title">Live Markets</span></h3>
+  <div class="market-grid">
+    <div class="card">
+      <h4 style="margin-top:0;color:var(--text-muted)" data-i18n="crypto_header">Crypto Assets</h4>
       <table>
-        <thead>
-          <tr><th>Asset</th><th>Price ($)</th><th>24h Change</th></tr>
-        </thead>
-        <tbody id="cryptoRows">
-          <!-- injected -->
+        <tbody id="cryptoBody">
+           <tr><td colspan="3">Loading...</td></tr>
         </tbody>
       </table>
     </div>
-
-    <div class="market-list fade-in">
-      <h3><i class="fas fa-chart-line"></i> Major Stock Indices</h3>
+    <div class="card">
+      <h4 style="margin-top:0;color:var(--text-muted)" data-i18n="stocks_header">Global Indices</h4>
       <table>
-        <thead><tr><th>Index/Stock</th><th>Value</th><th>Daily Change</th></tr></thead>
-        <tbody>
-          <tr><td>S&P 500</td><td id="sp500">—</td><td id="sp500c">—</td></tr>
-          <tr><td>Nasdaq</td><td id="nasdaq">—</td><td id="nasdaqc">—</td></tr>
-          <tr><td>Apple (AAPL)</td><td id="aapl">—</td><td id="aaplc">—</td></tr>
-        </tbody>
+        <tr>
+          <td>S&P 500</td>
+          <td style="text-align:end">5,234.12</td>
+          <td style="text-align:end" class="up">+0.8%</td>
+        </tr>
+        <tr>
+          <td>Nasdaq</td>
+          <td style="text-align:end">16,420.50</td>
+          <td style="text-align:end" class="up">+1.2%</td>
+        </tr>
+        <tr>
+          <td>Gold</td>
+          <td style="text-align:end">2,150.00</td>
+          <td style="text-align:end" class="up">+0.3%</td>
+        </tr>
       </table>
-    </div>
-
-  </section>
-
-  <h2 id="partnerships">🤝 Pi Ecosystem Partnerships</h2>
-
-  <!-- REPUTA card preserved -->
-  <div class="reputa-card fade-in">
-    <img id="reputaLogo" src="https://mediceberg.github.io/RP/logo.png" onerror="this.onerror=null;this.src='1000000219.png'">
-    <div class="reputa-content">
-      <h3>REPUTA SCORE: Decentralized Credit</h3>
-      <p><strong>REPUTA</strong> is a token focused on measuring <strong>reputation and reliability</strong>, built for decentralized credit experiences and rating methodologies. It was issued on the <strong>Pi Testnet</strong> for testing and integration with Wallets and Pi DEX.</p>
-      <a class="reputa-link" href="https://reputa3833.pinet.com" target="_blank"><i class="fas fa-arrow-right"></i>&nbsp; Visit REPUTA Website</a>
     </div>
   </div>
 
-  <section class="partnerships-section" id="partnerships">
-    <h3 style="color:var(--text-light);font-size:1.4em;margin-bottom:18px">Integrated Pi Apps</h3>
-    <div class="partnerships-grid">
+  <h3 class="section-title" id="ecosystem"><i class="fas fa-network-wired"></i> <span data-i18n="partners_title">Ecosystem Partners</span></h3>
+  
+  <div class="partners-grid">
+    
+    <a href="https://technewseaadcfd8835.pinet.com" target="_blank" class="partner-card">
+      <img src="https://mediceberg.github.io/TN/token.png" class="partner-logo" alt="TechNews">
+      <h4>TechNews</h4>
+      <span data-i18n="p_news">News & Data</span>
+    </a>
 
-      <a class="partner-card" href="https://fastdeliveryaffd0592.pinet.com" target="_blank">
-        <i class="fas fa-shipping-fast"></i>
-        <h4>FastDelivery</h4>
-        <span>Logistics & Shipping</span>
-      </a>
+    <a href="https://smartpaybfdddefd7151.pinet.com" target="_blank" class="partner-card">
+      <img src="photo_5843840955616791701_y.jpg" class="partner-logo" alt="SmartPay">
+      <h4>SmartPay</h4>
+      <span data-i18n="p_pay">Crypto Payments</span>
+    </a>
 
-      <a class="partner-card" href="https://trustlesscircle0036.pinet.com" target="_blank">
-        <i class="fas fa-users-cog"></i>
-        <h4>Trustless Circle</h4>
-        <span>Decentralized Trust</span>
-      </a>
+    <a href="https://trustlesscircle0036.pinet.com" target="_blank" class="partner-card">
+      <img src="photo_5843840955616791702_y.jpg" class="partner-logo" alt="Trustless Circle">
+      <h4>Trustless Circle</h4>
+      <span data-i18n="p_trust">Decentralized Trust</span>
+    </a>
 
-      <a class="partner-card" href="https://smartpaybfdddefd7151.pinet.com" target="_blank">
-        <i class="fas fa-credit-card"></i>
-        <h4>SmartPay</h4>
-        <span>Crypto Payments</span>
-      </a>
+    <a href="https://fastdeliveryaffd0592.pinet.com" target="_blank" class="partner-card">
+      <img src="photo_5843840955616791703_y.jpg" class="partner-logo" alt="Fast Delivery">
+      <h4>Fast Delivery</h4>
+      <span data-i18n="p_logistics">Logistics Platform</span>
+    </a>
 
-      <a class="partner-card" href="https://technewseaadcfd8835.pinet.com" target="_blank">
-        <i class="fas fa-globe"></i>
-        <h4>TechNews</h4>
-        <span>Main App</span>
-      </a>
+  </div>
 
+  <div class="card" style="margin-top:30px; display:flex; gap:20px; align-items:center; border-left: 4px solid var(--secondary);">
+    <img src="https://mediceberg.github.io/RP/logo.png" style="width:60px;height:60px;border-radius:10px" alt="Reputa">
+    <div>
+      <h4 style="margin:0;font-size:1.2em">REPUTA Score</h4>
+      <p style="margin:5px 0 0; color:var(--text-muted); font-size:0.9em" data-i18n="reputa_desc">The decentralized credit scoring standard for the Pi Network ecosystem.</p>
     </div>
-  </section>
+  </div>
 
-  <h2 id="news">📰 Latest News Headlines</h2>
+  <h3 class="section-title" id="news"><i class="fas fa-newspaper"></i> <span data-i18n="news_title">Latest Headlines</span></h3>
   <div class="news-grid">
-    <div class="news-card"><h4>Crypto: Bitcoin Breaks $70k Barrier - Is the Bull Run Starting?</h4><p>Analysts predict a major surge following the institutional adoption of spot ETF funds.</p></div>
-    <div class="news-card"><h4>Technology: Google Launches Gemini 2.5 - New AI Capabilities Unveiled</h4><p>A comprehensive review of the new AI model's ability to process visual, video, and textual content.</p></div>
-    <div class="news-card"><h4>Finance: US Inflation Report Watch - Impact on Global Stock Market Indices</h4><p>An overview of the Federal Reserve's interest rate decisions and their effect on major exchanges.</p></div>
-    <div class="news-card"><h4>Pi Network: Core Team Provides Crucial Updates on Open Mainnet Launch</h4><p>New guidelines regarding KYC procedures and technical preparations for the network's next phase.</p></div>
+    <div class="news-item">
+      <h4 data-i18n="n1_title">Bitcoin Surpasses $70k Milestone</h4>
+      <p data-i18n="n1_desc">Institutional demand continues to drive the crypto market rally to new heights.</p>
+    </div>
+    <div class="news-item">
+      <h4 data-i18n="n2_title">TechNews Integration Update</h4>
+      <p data-i18n="n2_desc">New API endpoints are now available for developers to fetch live Pi market data.</p>
+    </div>
+    <div class="news-item">
+      <h4 data-i18n="n3_title">SmartPay Launches Beta</h4>
+      <p data-i18n="n3_desc">Users can now test peer-to-peer crypto transactions with near-zero fees.</p>
+    </div>
   </div>
 
 </div>
 
 <footer>
-  <p>TechNews | Your Source for Tech & Financial Intelligence &copy; 2025</p>
+  <div class="container">
+    <span data-i18n="footer_copy">&copy; 2025 TechNews Platform. All rights reserved.</span>
+    <span class="dev-credit" data-i18n="dev_credit">Developed by Groupe Mediceberg</span>
+  </div>
 </footer>
 
-<!-- Scripts: keep CoinGecko live fetch + animations (same as previous file but scoped to this structure) -->
 <script>
-// minimal live crypto fetch using CoinGecko
-const cryptoIds = ['bitcoin','ethereum','solana'];
-const REFRESH_INTERVAL = 30_000;
-const $ = s => document.querySelector(s);
-
-function formatUSD(n){ if(n==null) return '—'; return '$'+Number(n).toLocaleString(undefined,{maximumFractionDigits:2}); }
-function round(n,dec=2){ return Math.round((n||0)*Math.pow(10,dec))/Math.pow(10,dec); }
-
-async function fetchCrypto(){
-  const ids = cryptoIds.join('%2C');
-  const endpoint = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${ids}&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h`;
-  try{
-    const r = await fetch(endpoint);
-    if(!r.ok) throw new Error('CoinGecko error');
-    const data = await r.json();
-    renderCrypto(data);
-  }catch(e){ console.error(e); renderCrypto([]); }
-}
-
-function renderCrypto(list){
-  const tbody = document.getElementById('cryptoRows');
-  tbody.innerHTML = '';
-  if(!list || list.length===0){
-    list = [
-      {name:'Bitcoin',symbol:'BTC',current_price:70500.23,price_change_percentage_24h:1.56,image:''},
-      {name:'Ethereum',symbol:'ETH',current_price:4120.78,price_change_percentage_24h:-0.89,image:''},
-      {name:'Solana',symbol:'SOL',current_price:152.45,price_change_percentage_24h:-1.25,image:''}
-    ];
+/* --- Translations Logic --- */
+const translations = {
+  en: {
+    home: "Home", markets: "Markets", partners: "Ecosystem", news: "News",
+    hero_title: "The Future of Finance & Tech",
+    hero_desc: "Real-time market data, decentralized ecosystem updates, and breaking news powered by the Pi Network.",
+    cta_btn: "Launch TechNews App",
+    market_title: "Live Markets",
+    crypto_header: "Crypto Assets", stocks_header: "Global Indices",
+    partners_title: "Ecosystem Partners",
+    p_news: "News & Data", p_pay: "Crypto Payments", p_trust: "Decentralized Trust", p_logistics: "Logistics Platform",
+    reputa_desc: "The decentralized credit scoring standard for the Pi Network ecosystem.",
+    news_title: "Latest Headlines",
+    n1_title: "Bitcoin Surpasses $70k Milestone", n1_desc: "Institutional demand continues to drive the crypto market rally.",
+    n2_title: "TechNews Integration Update", n2_desc: "New API endpoints are now available for developers.",
+    n3_title: "SmartPay Launches Beta", n3_desc: "Users can now test peer-to-peer crypto transactions.",
+    footer_copy: "© 2025 TechNews Platform. All rights reserved.",
+    dev_credit: "Developed by Groupe Mediceberg"
+  },
+  ar: {
+    home: "الرئيسية", markets: "الأسواق", partners: "المنظومة", news: "الأخبار",
+    hero_title: "مستقبل المال والتكنولوجيا",
+    hero_desc: "بيانات سوق فورية، تحديثات النظام اللامركزي، وأخبار عاجلة مدعومة بشبكة Pi.",
+    cta_btn: "افتح تطبيق TechNews",
+    market_title: "أسواق حية",
+    crypto_header: "العملات الرقمية", stocks_header: "المؤشرات العالمية",
+    partners_title: "شركاء المنظومة",
+    p_news: "أخبار وبيانات", p_pay: "مدفوعات مشفرة", p_trust: "الثقة اللامركزية", p_logistics: "منصة لوجستية",
+    reputa_desc: "معيار التصنيف الائتماني اللامركزي لمنظومة شبكة Pi.",
+    news_title: "آخر العناوين",
+    n1_title: "بيتكوين يتجاوز حاجز 70 ألف دولار", n1_desc: "الطلب المؤسسي يواصل دفع سوق العملات الرقمية لارتفاعات جديدة.",
+    n2_title: "تحديث دمج TechNews", n2_desc: "نقاط ربط API جديدة متاحة الآن للمطورين لجلب بيانات السوق.",
+    n3_title: "إطلاق النسخة التجريبية لـ SmartPay", n3_desc: "يمكن للمستخدمين الآن اختبار المعاملات المشفرة برسوم شبه معدومة.",
+    footer_copy: "© 2025 منصة TechNews. جميع الحقوق محفوظة.",
+    dev_credit: "تطوير بواسطة Groupe Mediceberg"
   }
-  let topCap = 0;
-  list.forEach(c => {
-    const tr = document.createElement('tr');
-    const change = c.price_change_percentage_24h || 0;
-    const cls = change>=0 ? 'change-up' : 'change-down';
-    tr.innerHTML = `<td style="display:flex;gap:12px;align-items:center"><div style="width:36px;height:36px;border-radius:8px;overflow:hidden;background:#0b0f19"><img src="${c.image||''}" alt="${c.symbol||''}" style="width:100%;height:100%;object-fit:contain" onerror="this.parentNode.textContent='${(c.symbol||'').toUpperCase()}';this.style.display='none'"></div><div><div style='font-weight:700'>${c.name||'—'}</div><div style='color:var(--text-dim);font-size:0.85rem'>${(c.symbol||'').toUpperCase()}</div></div></td><td class='price'>${formatUSD(c.current_price)}</td><td class='${cls}'>${(change>=0?'+':'')}${round(change,2)}%</td>`;
-    tbody.appendChild(tr);
-    topCap += (c.market_cap||0);
-  });
-  // topCap display (compact)
-  const capEl = document.getElementById('marketCap');
-  if(capEl) capEl.textContent = topCap ? (topCap>1e9? (Math.round(topCap/1e9*100)/100)+'B' : '$'+topCap.toLocaleString()) : '—';
-}
+};
 
-// initial & interval
-fetchCrypto();
-setInterval(fetchCrypto, REFRESH_INTERVAL);
+let currentLang = 'en';
 
-// ensure logos display: try to set Reputa logo explicitly if image exists
-(function ensureLogos(){
-  const logo = document.getElementById('siteLogo');
-  if(logo){
-    // set explicit fallback sequence: primary external -> local image
-    logo.src = 'https://mediceberg.github.io/TN/token.png';
-    logo.onerror = function(){ this.onerror=null; this.src='1000004949.jpg' };
-  }
-  const rlogo = document.getElementById('reputaLogo');
-  if(rlogo){ rlogo.src = 'https://mediceberg.github.io/RP/logo.png'; rlogo.onerror = function(){ this.onerror=null; this.src='1000000219.png'} }
-})();
-
-</script>
+function toggleLang() {
+  currentLang = currentLang === 'en' ? 'ar' : 'en';
+  const isAr = currentLang === 'ar';
   
-  <!-- Apps / Partners Section -->
-  <section id="partners" style="padding:60px 20px;text-align:center">
-    <h2 style="font-size:32px;margin-bottom:30px">Our Apps & Partners</h2>
-    <div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:center">
-      <a href="https://technewseaadcfd8835.pinet.com" target="_blank" style="padding:15px 25px;background:#111827;border-radius:12px;text-decoration:none;color:#fff;font-size:18px">TechNews</a>
-      <a href="https://reputa3833.pinet.com" target="_blank" style="padding:15px 25px;background:#111827;border-radius:12px;text-decoration:none;color:#fff;font-size:18px">Reputa</a>
-      <a href="https://fastdeliveryaffd0592.pinet.com" target="_blank" style="padding:15px 25px;background:#111827;border-radius:12px;text-decoration:none;color:#fff;font-size:18px">FastDelivery</a>
-      <a href="https://trustlesscircle0036.pinet.com" target="_blank" style="padding:15px 25px;background:#111827;border-radius:12px;text-decoration:none;color:#fff;font-size:18px">TrustlessCircle</a>
-      <a href="https://smartpaybfdddefd7151.pinet.com" target="_blank" style="padding:15px 25px;background:#111827;border-radius:12px;text-decoration:none;color:#fff;font-size:18px">SmartPay</a>
-    </div>
-  </section>
+  // 1. Set HTML direction and lang
+  document.documentElement.setAttribute('lang', currentLang);
+  document.documentElement.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+  
+  // 2. Toggle Button Text
+  document.getElementById('langText').textContent = isAr ? 'English' : 'العربية';
 
+  // 3. Update Text Content
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if(translations[currentLang][key]) {
+      el.textContent = translations[currentLang][key];
+    }
+  });
+}
+
+/* --- Crypto Fetch Logic --- */
+async function fetchCrypto() {
+  try {
+    const res = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,solana,ripple&order=market_cap_desc&per_page=4&sparkline=false');
+    const data = await res.json();
+    let html = '';
+    data.forEach(coin => {
+      const isUp = coin.price_change_percentage_24h >= 0;
+      html += `
+        <tr>
+          <td style="display:flex;align-items:center;gap:10px;border-bottom:none">
+            <img src="${coin.image}" style="width:24px;height:24px">
+            ${currentLang === 'ar' ? coin.symbol.toUpperCase() : coin.name}
+          </td>
+          <td style="text-align:end">$${coin.current_price.toLocaleString()}</td>
+          <td style="text-align:end" class="${isUp?'up':'down'}">${isUp?'+':''}${coin.price_change_percentage_24h.toFixed(2)}%</td>
+        </tr>
+      `;
+    });
+    document.getElementById('cryptoBody').innerHTML = html;
+  } catch(e) {
+    document.getElementById('cryptoBody').innerHTML = '<tr><td colspan="3">Data unavailable</td></tr>';
+  }
+}
+
+fetchCrypto();
+</script>
 </body>
 </html>
