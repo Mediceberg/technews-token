@@ -81,7 +81,8 @@ body[dir="rtl"] .market-list h3, body[dir="rtl"] .main-content h2{border-right:n
 <header>
  <div class="container navbar">
    <div class="logo-section">
-     <img id="siteLogo" src="https://mediceberg.github.io/RP/logo-technews.png" alt="TechNews Logo">
+     <!-- TechNews Header Logo -->
+     <img id="siteLogo" src="https://mediceberg.github.io/RP/logo.png" alt="TechNews Logo">
      <h1 id="siteTitle">TechNews</h1>
    </div>
    <nav class="nav-links">
@@ -118,7 +119,11 @@ body[dir="rtl"] .market-list h3, body[dir="rtl"] .main-content h2{border-right:n
     <h3><i class="fas fa-chart-line"></i> <span id="stocksTitle">Top Stocks</span></h3>
     <table>
       <thead><tr><th>Index/Stock</th><th>Value</th><th>Daily Change</th></tr></thead>
-      <tbody id="stocksRows"></tbody>
+      <tbody>
+        <tr><td>S&P 500</td><td id="sp500">—</td><td id="sp500c">—</td></tr>
+        <tr><td>Nasdaq</td><td id="nasdaq">—</td><td id="nasdaqc">—</td></tr>
+        <tr><td>Apple (AAPL)</td><td id="aapl">—</td><td id="aaplc">—</td></tr>
+      </tbody>
     </table>
   </div>
 </section>
@@ -126,7 +131,8 @@ body[dir="rtl"] .market-list h3, body[dir="rtl"] .main-content h2{border-right:n
 <h2 id="partnersTitle">🤝 Pi Ecosystem Partners</h2>
 
 <div class="reputa-card fade-in">
-  <img id="reputaLogo" src="https://mediceberg.github.io/RP/logo-reputa.png">
+  <!-- Reputa Logo ONLY inside this card -->
+  <img id="reputaLogo" src="https://mediceberg.github.io/RP/reputa-logo.png">
   <div class="reputa-content">
     <h3 id="reputaTitle">REPUTA SCORE: Decentralized Reputation</h3>
     <p id="reputaDesc">REPUTA token for reputation & reliability on Pi Testnet.</p>
@@ -144,7 +150,9 @@ body[dir="rtl"] .market-list h3, body[dir="rtl"] .main-content h2{border-right:n
 </section>
 
 <h2 id="newsTitle">📰 Latest News</h2>
-<div class="news-grid" id="newsGrid"></div>
+<div class="news-grid" id="newsGrid">
+  <!-- news items loaded dynamically -->
+</div>
 
 </div>
 
@@ -153,7 +161,7 @@ body[dir="rtl"] .market-list h3, body[dir="rtl"] .main-content h2{border-right:n
 </footer>
 
 <script>
-// ---------------- Crypto Live ----------------
+// Crypto Live from CoinGecko
 const cryptoIds = ['bitcoin','ethereum','solana'];
 function formatUSD(n){ return n==null ? '—' : '$'+Number(n).toLocaleString(undefined,{maximumFractionDigits:2}); }
 function round(n,dec=2){ return Math.round((n||0)*Math.pow(10,dec))/Math.pow(10,dec); }
@@ -180,77 +188,36 @@ function renderCrypto(list){
 }
 fetchCrypto(); setInterval(fetchCrypto,30000);
 
-// ---------------- Stocks Live ----------------
-const stockSymbols = ['AAPL','TSLA','AMZN'];
+// Stocks Live from Yahoo Finance (example)
 async function fetchStocks(){
-  const endpoint = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${stockSymbols.join(',')}`;
   try{
-    const r=await fetch(endpoint); const data=await r.json();
-    const quotes = data.quoteResponse.result; renderStocks(quotes);
+    const r = await fetch('https://query1.finance.yahoo.com/v7/finance/quote?symbols=^GSPC,^IXIC,AAPL');
+    const data = await r.json();
+    const q = data.quoteResponse.result;
+    document.getElementById('sp500').textContent = q[0]?.regularMarketPrice?.toFixed(2) ?? '—';
+    document.getElementById('sp500c').textContent = q[0]?.regularMarketChangePercent?.toFixed(2)+'%' ?? '—';
+    document.getElementById('nasdaq').textContent = q[1]?.regularMarketPrice?.toFixed(2) ?? '—';
+    document.getElementById('nasdaqc').textContent = q[1]?.regularMarketChangePercent?.toFixed(2)+'%' ?? '—';
+    document.getElementById('aapl').textContent = q[2]?.regularMarketPrice?.toFixed(2) ?? '—';
+    document.getElementById('aaplc').textContent = q[2]?.regularMarketChangePercent?.toFixed(2)+'%' ?? '—';
   } catch(e){console.error(e);}
-}
-function renderStocks(list){
-  const tbody = document.getElementById('stocksRows'); tbody.innerHTML='';
-  list.forEach(s=>{
-    const change = s.regularMarketChangePercent||0;
-    const cls = change>=0?'change-up':'change-down';
-    const tr=document.createElement('tr');
-    tr.innerHTML=`<td>${s.symbol}</td><td>${formatUSD(s.regularMarketPrice)}</td><td class='${cls}'>${round(change)}%</td>`;
-    tbody.appendChild(tr);
-  });
 }
 fetchStocks(); setInterval(fetchStocks,30000);
 
-// ---------------- News ----------------
-const newsGrid = document.getElementById('newsGrid');
-const newsAPIKey = 'YOUR_NEWSAPI_KEY'; // ضع مفتاحك هنا
-async function fetchNews(){
-  try{
-    const r=await fetch(`https://newsapi.org/v2/top-headlines?category=technology&language=en&pageSize=6&apiKey=${newsAPIKey}`);
-    const data = await r.json();
-    renderNews(data.articles || []);
-  }catch(e){console.error(e);}
-}
-function renderNews(list){
-  newsGrid.innerHTML='';
-  if(!list || list.length===0){
-    newsGrid.innerHTML='<p style="color:var(--text-dim)">No news available</p>'; return;
-  }
-  list.forEach(n=>{
-    const card = document.createElement('div'); card.className='news-card fade-in';
-    card.innerHTML=`<h4>${n.title||'—'}</h4><p>${n.description||''}</p>`;
-    newsGrid.appendChild(card);
-  });
-}
-fetchNews(); setInterval(fetchNews,60000);
-
-// ---------------- Language ----------------
+// Language switch (EN/AR)
 const langBtn = document.getElementById('langBtn');
 let currentLang = 'en';
 const texts = {
-  en:{
-    home:'Home', markets:'Markets', partners:'Partners', news:'News',
-    ctaTitle:'Future of finance, powered by tech.', ctaDesc:'Get live updates on crypto, stocks and tech.', ctaBtn:'Open TechNews on Pi Browser',
-    marketsTitle:'📊 Global Markets', marketsDesc:'Sample data: crypto from CoinGecko, stocks illustrative.', cryptoTitle:'Top Cryptos', stocksTitle:'Top Stocks',
-    partnersTitle:'🤝 Pi Ecosystem Partners',
-    reputaTitle:'REPUTA SCORE: Decentralized Reputation', reputaDesc:'REPUTA token for reputation & reliability on Pi Testnet.', reputaBtn:'Visit REPUTA',
-    newsTitle:'📰 Latest News'
-  },
-  ar:{
-    home:'الرئيسية', markets:'الأسواق', partners:'الشركاء', news:'الأخبار',
-    ctaTitle:'مستقبل التمويل، مدعوم بالتكنولوجيا.', ctaDesc:'احصل على تحديثات فورية حول العملات الرقمية، الأسهم والتقنية.', ctaBtn:'افتح TechNews على Pi Browser',
-    marketsTitle:'📊 الأسواق العالمية', marketsDesc:'البيانات أدناه: العملات الرقمية مباشرة من CoinGecko، والأسهم مثال توضيحي.', cryptoTitle:'أهم العملات الرقمية', stocksTitle:'أهم الأسهم',
-    partnersTitle:'🤝 شركاء Pi Ecosystem',
-    reputaTitle:'REPUTA SCORE: السمعة اللامركزية', reputaDesc:'توكين REPUTA للسمعة والموثوقية على Pi Testnet.', reputaBtn:'زيارة REPUTA',
-    newsTitle:'📰 آخر الأخبار'
-  }
+  en:{home:'Home', markets:'Markets', partners:'Partners', news:'News', ctaTitle:'Future of finance, powered by tech.', ctaDesc:'Get live updates on crypto, stocks and tech.', ctaBtn:'Open TechNews on Pi Browser', marketsTitle:'📊 Global Markets', marketsDesc:'Sample data: crypto from CoinGecko, stocks illustrative.', cryptoTitle:'Top Cryptos', stocksTitle:'Top Stocks', partnersTitle:'🤝 Pi Ecosystem Partners', reputaTitle:'REPUTA SCORE: Decentralized Reputation', reputaDesc:'REPUTA token for reputation & reliability on Pi Testnet.', reputaBtn:'Visit REPUTA', newsTitle:'📰 Latest News'},
+  ar:{home:'الرئيسية', markets:'الأسواق', partners:'الشركاء', news:'الأخبار', ctaTitle:'مستقبل التمويل، مدعوم بالتكنولوجيا.', ctaDesc:'احصل على تحديثات فورية حول العملات الرقمية، الأسهم والتقنية.', ctaBtn:'افتح TechNews على Pi Browser', marketsTitle:'📊 الأسواق العالمية', marketsDesc:'البيانات أدناه: العملات الرقمية مباشرة من CoinGecko، والأسهم مثال توضيحي.', cryptoTitle:'أهم العملات الرقمية', stocksTitle:'أهم الأسهم', partnersTitle:'🤝 شركاء Pi Ecosystem', reputaTitle:'REPUTA SCORE: السمعة اللامركزية', reputaDesc:'توكين REPUTA للسمعة والموثوقية على Pi Testnet.', reputaBtn:'زيارة REPUTA', newsTitle:'📰 آخر الأخبار'}
 };
 langBtn.addEventListener('click',()=>{
   currentLang = currentLang==='en'?'ar':'en';
   document.body.dir = currentLang==='ar'?'rtl':'ltr';
   langBtn.textContent = currentLang==='en'?'AR':'EN';
-  document.querySelectorAll('.nav-links a[data-key]').forEach(a=>{
-    const key=a.getAttribute('data-key'); a.textContent=texts[currentLang][key];
-  });
+  document.querySelectorAll('.nav-links a[data-key]').forEach(a=>{const key=a.getAttribute('data-key'); a.textContent=texts[currentLang][key];});
   document.getElementById('ctaTitle').textContent=texts[currentLang].ctaTitle;
   document.getElementById('ctaDesc').textContent=texts[currentLang].ctaDesc;
+  document.getElementById('ctaBtn').textContent=texts[currentLang].ctaBtn;
+  document.getElementById('marketsTitle').textContent=texts[currentLang].marketsTitle;
+  document.getElementById('marketsDesc').
