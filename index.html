@@ -1,426 +1,252 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechNews | Tech, Finance & Crypto Markets</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
-    <style>
-        /* Modern & Dark/Vibrant Theme Variables */
-        :root {
-            --primary-blue: #007bff; /* Main brand color */
-            --secondary-vibrant: #50e3c2; /* Accent color for Reputa */
-            --background-dark: #1e1e2f; /* Dark background */
-            --card-dark: #27293d; /* Slightly lighter card background */
-            --text-light: #f8f8f8; /* Main text color */
-            --text-dim: #b5b5c3; /* Dimmed text */
-            --success-color: #0bb783; /* Green for gains */
-            --danger-color: #f64e60; /* Red for losses */
-            --shadow-vibrant: 0 5px 20px rgba(0, 0, 0, 0.2);
-        }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TechNews / أخبار التقنية</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{
+  --primary-blue:#007bff; --secondary-vibrant:#50e3c2; --background-dark:#1e1e2f; --card-dark:#27293d; --text-light:#e8eef7; --text-dim:#b5b5c3;
+  --success:#0bb783; --danger:#f64e60; --shadow:0 5px 20px rgba(0,0,0,0.2);
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Cairo',sans-serif}
+body{background:var(--background-dark);color:var(--text-light);line-height:1.6}
+a{text-decoration:none;color:inherit}
+.container{width:90%;max-width:1400px;margin:0 auto;padding:0 15px}
 
-        /* Base Styles */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--background-dark);
-            color: var(--text-light);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            direction: ltr; 
-        }
+/* Header */
+header{background:var(--card-dark);box-shadow:var(--shadow);padding:18px 0;position:sticky;top:0;z-index:1000}
+.navbar{display:flex;justify-content:space-between;align-items:center}
+.logo-section{display:flex;align-items:center}
+.logo-section img{width:48px;height:48px;margin-left:12px;object-fit:contain;border-radius:8px}
+.logo-section h1{font-size:1.6em;color:var(--primary-blue);font-weight:800}
+.nav-links a{margin-right:18px;padding:8px 14px;border-radius:8px;transition:all .25s;font-weight:600}
+.nav-links a:hover{background:rgba(0,123,255,0.08)}
+.lang-toggle{background:var(--primary-blue);color:white;padding:8px 12px;border-radius:8px}
 
-        /* General */
-        a { text-decoration: none; }
+/* CTA */
+.cta-section{background:linear-gradient(135deg,var(--primary-blue),#0056b3);padding:72px 0;text-align:center}
+.cta-section h2{font-size:2em;margin-bottom:12px}
+.cta-button{display:inline-block;background:#ffd700;color:#111;padding:14px 36px;border-radius:50px;font-weight:800;box-shadow:0 6px 18px rgba(255,215,0,0.25)}
 
-        /* Container */
-        .container {
-            width: 90%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
+/* Main content */
+.main-content{padding:28px 0}
+.main-content h2{font-size:1.9em;color:var(--text-light);margin:40px 0 18px;border-right:5px solid var(--secondary-vibrant);padding-right:15px}
 
-        /* Header and Navigation */
-        header {
-            background-color: var(--card-dark);
-            box-shadow: var(--shadow-vibrant);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+.market-section{display:flex;gap:30px;flex-wrap:wrap}
+.market-list{flex:1;min-width:420px;background:var(--card-dark);border-radius:12px;box-shadow:var(--shadow);padding:30px}
+.market-list h3{color:var(--secondary-vibrant);border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:12px}
+table{width:100%;border-collapse:collapse}
+th,td{padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+th{text-align:left}
+.change-up{color:var(--success);font-weight:700}
+.change-down{color:var(--danger);font-weight:700}
 
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+/* News grid */
+.news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:22px;margin-top:18px}
+.news-card{background:var(--card-dark);border-radius:12px;padding:22px;border-right:5px solid var(--primary-blue);transition:transform .25s}
+.news-card:hover{transform:translateY(-6px);border-right-color:var(--secondary-vibrant)}
+.news-card h4{color:var(--text-light);margin:0}
+.news-card p{color:var(--text-dim)}
 
-        .logo-section {
-            display: flex;
-            align-items: center;
-        }
+/* Partnerships */
+.partnerships-section{margin-top:40px;padding:30px;background:var(--card-dark);border-radius:12px;text-align:center}
+.partnerships-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:24px;margin-top:18px}
+.partner-card{width:200px;padding:20px;background:var(--background-dark);border-radius:10px;transition:transform .25s;border:2px solid var(--text-dim)}
+.partner-card:hover{transform:scale(1.05);box-shadow:0 0 18px var(--primary-blue);border-color:var(--primary-blue)}
+.partner-card i{font-size:2.2em;color:var(--secondary-vibrant);margin-bottom:12px}
+.partner-card h4{color:var(--text-light);margin:6px 0}
+.partner-card span{color:var(--text-dim)}
 
-        .logo-section img {
-            width: 40px; 
-            height: 40px;
-            margin-right: 10px;
-            object-fit: contain; 
-        }
+/* Reputa */
+.reputa-card{background:var(--card-dark);padding:24px;border-radius:12px;margin-top:20px;box-shadow:var(--shadow);border-right:5px solid var(--secondary-vibrant);display:flex;align-items:center;gap:18px}
+.reputa-card img{width:84px;height:84px;object-fit:contain;border-radius:10px}
+.reputa-content h3{color:var(--secondary-vibrant);margin:0;font-size:1.4em}
+.reputa-content p{color:var(--text-dim)}
+.reputa-link{color:var(--primary-blue);font-weight:700;margin-top:10px;display:inline-block}
 
-        .logo-section h1 {
-            font-size: 1.8em;
-            color: var(--primary-blue);
-            margin: 0;
-            font-weight: 800; 
-        }
-        
-        /* Navigation Links */
-        .nav-links a {
-            color: var(--text-dim);
-            text-decoration: none;
-            font-weight: 600;
-            margin-left: 20px;
-            padding: 8px 15px;
-            border-radius: 8px;
-            transition: all 0.3s;
-        }
+footer{text-align:center;padding:30px 0;background:var(--background-dark);color:var(--text-dim);margin-top:40px;border-top:1px solid rgba(255,255,255,0.04)}
 
-        .nav-links a:hover {
-            color: var(--text-light);
-            background-color: rgba(0, 123, 255, 0.1);
-        }
+.fade-in{animation:fadeIn .6s ease both}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
-        /* Language Toggle Button */
-        .lang-toggle {
-            background-color: var(--primary-blue);
-            color: white !important;
-        }
-
-        .lang-toggle:hover {
-            background-color: #0056b3;
-        }
-
-        /* Hero/CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, var(--primary-blue), #0056b3); 
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: #ffd700; /* Gold/Yellow for visibility */
-            color: #333;
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-weight: 800;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
-        }
-
-        /* Main Content Titles */
-        .main-content h2 {
-            font-size: 2em;
-            color: var(--text-light);
-            margin-top: 60px;
-            margin-bottom: 20px;
-            border-left: 5px solid var(--secondary-vibrant);
-            padding-left: 15px;
-            font-weight: 800;
-        }
-
-        /* Market Section */
-        .market-section {
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        .market-list {
-            flex: 1;
-            min-width: 450px; 
-            background-color: var(--card-dark);
-            border-radius: 12px;
-            box-shadow: var(--shadow-vibrant);
-            padding: 30px;
-        }
-        
-        .market-list h3 {
-            color: var(--secondary-vibrant);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 15px;
-            font-size: 1.6em;
-        }
-
-        table { width: 100%; border-collapse: collapse; }
-        th, td { padding: 15px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-        th { color: var(--text-dim); text-align: left; }
-        .change-up { color: var(--success-color); font-weight: bold; }
-        .change-down { color: var(--danger-color); font-weight: bold; }
-
-        /* News Grid */
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .news-card {
-            background-color: var(--card-dark);
-            border-radius: 12px;
-            padding: 25px;
-            border-left: 5px solid var(--primary-blue);
-            transition: transform 0.3s;
-        }
-
-        .news-card:hover { transform: translateY(-5px); border-left: 5px solid var(--secondary-vibrant); }
-
-        .news-card h4 { color: var(--text-light); font-size: 1.4em; }
-        .news-card p { color: var(--text-dim); }
-
-        /* Partnerships Section */
-        .partnerships-section {
-            margin-top: 60px;
-            padding: 40px 0;
-            background-color: var(--card-dark);
-            border-radius: 12px;
-            text-align: center;
-        }
-        
-        .partnerships-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 30px;
-        }
-        
-        .partner-card {
-            width: 200px;
-            padding: 20px 10px;
-            background-color: var(--background-dark);
-            border-radius: 10px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 2px solid var(--text-dim);
-        }
-        
-        .partner-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px var(--primary-blue);
-            border-color: var(--primary-blue);
-        }
-
-        .partner-card i {
-            font-size: 3em;
-            color: var(--secondary-vibrant);
-            margin-bottom: 15px;
-        }
-
-        .partner-card h4 {
-            color: var(--text-light);
-            margin: 0 0 10px 0;
-        }
-        
-        .partner-card span {
-            font-size: 0.9em;
-            color: var(--text-dim);
-        }
-
-        /* Reputa Section - Integrated as a Partner */
-        .reputa-card {
-            background-color: var(--card-dark);
-            padding: 30px;
-            border-radius: 12px;
-            margin-top: 40px;
-            box-shadow: var(--shadow-vibrant);
-            border-left: 5px solid var(--secondary-vibrant);
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        
-        .reputa-card img { width: 80px; height: 80px; object-fit: contain; }
-        .reputa-content h3 { color: var(--secondary-vibrant); font-size: 1.8em; }
-        .reputa-content p { color: var(--text-dim); }
-        .reputa-link { color: var(--primary-blue); font-weight: 700; margin-top: 15px; }
-        
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 30px 0;
-            background-color: var(--background-dark);
-            color: var(--text-dim);
-            margin-top: 60px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-    </style>
+body[dir="rtl"] .navbar .nav-links a{margin-left:18px;margin-right:0}
+body[dir="rtl"] .market-list h3, body[dir="rtl"] .main-content h2{border-right:none;border-left:5px solid var(--secondary-vibrant);padding-right:0;padding-left:15px}
+</style>
 </head>
 <body>
 
-    <header>
-        <div class="container navbar">
-            <div class="logo-section">
-                <img src="1000004949.jpg" alt="TechNews Logo">
-                <h1>TechNews</h1>
-            </div>
-            <nav class="nav-links">
-                <a href="#">Home</a>
-                <a href="#markets">Markets</a>
-                <a href="#partnerships">Partnerships</a>
-                <a href="#news">News</a>
-                <a href="index_ar.html" class="lang-toggle"><i class="fas fa-globe"></i> AR</a>
-            </nav>
-        </div>
-    </header>
+<header>
+ <div class="container navbar">
+   <div class="logo-section">
+     <img id="siteLogo" src="https://mediceberg.github.io/RP/logo.png" alt="TechNews Logo">
+     <h1 id="siteTitle">TechNews</h1>
+   </div>
+   <nav class="nav-links">
+     <a href="#" data-key="home">Home</a>
+     <a href="#markets" data-key="markets">Markets</a>
+     <a href="#partnerships" data-key="partners">Partners</a>
+     <a href="#news" data-key="news">News</a>
+     <a href="#" class="lang-toggle" id="langBtn">AR</a>
+   </nav>
+ </div>
+</header>
 
-    <section class="cta-section">
-        <div class="container">
-            <h2>The Future of Finance, Powered by Tech.</h2>
-            <p>Get instant, curated updates on Cryptocurrencies, Stock Markets, and Decentralized Technology.</p>
-            
-            <a href="https://technewseaadcfd8835.pinet.com" target="_blank" class="cta-button">
-                <i class="fas fa-bolt"></i> Launch TechNews on Pi Browser
-            </a>
-        </div>
-    </section>
+<section class="cta-section">
+ <div class="container">
+   <h2 id="ctaTitle">Future of finance, powered by tech.</h2>
+   <p id="ctaDesc">Get live updates on crypto, stocks and tech.</p>
+   <a class="cta-button" href="https://technewseaadcfd8835.pinet.com" target="_blank" id="ctaBtn">Open TechNews on Pi Browser</a>
+ </div>
+</section>
 
-    <div class="container main-content">
-        
-        <h2 id="markets">📊 Live Market Data & Global Indices</h2>
-        <p style="color: var(--danger-color); font-style: italic;">Note: Data below is static (placeholder). Use our App for real-time updates.</p>
+<div class="container main-content">
+<h2 id="marketsTitle">📊 Global Markets</h2>
+<p style="color:var(--danger);font-style:italic" id="marketsDesc">Sample data: crypto from CoinGecko, stocks illustrative.</p>
 
-        <section class="market-section">
-            
-            <div class="market-list">
-                <h3><i class="fas fa-coins"></i> Top Cryptocurrencies</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Asset</th>
-                            <th>Price ($)</th>
-                            <th>24h Change</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Bitcoin (BTC)</td>
-                            <td>$70,500.23</td>
-                            <td class="change-up"><i class="fas fa-caret-up"></i> +1.56%</td>
-                        </tr>
-                        <tr>
-                            <td>Ethereum (ETH)</td>
-                            <td>$4,120.78</td>
-                            <td class="change-down"><i class="fas fa-caret-down"></i> -0.89%</td>
-                        </tr>
-                        <tr>
-                            <td>Pi Coin (PI)</td>
-                            <td>$35.50</td>
-                            <td class="change-up"><i class="fas fa-caret-up"></i> +4.10%</td>
-                        </tr>
-                        <tr>
-                            <td>Solana (SOL)</td>
-                            <td>$152.45</td>
-                            <td class="change-down"><i class="fas fa-caret-down"></i> -1.25%</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+<section class="market-section">
+  <div class="market-list fade-in">
+    <h3><i class="fas fa-coins"></i> <span id="cryptoTitle">Top Cryptos</span></h3>
+    <table>
+      <thead><tr><th>Asset</th><th>Price ($)</th><th>24h Change</th></tr></thead>
+      <tbody id="cryptoRows"></tbody>
+    </table>
+  </div>
+  <div class="market-list fade-in">
+    <h3><i class="fas fa-chart-line"></i> <span id="stocksTitle">Top Stocks</span></h3>
+    <table>
+      <thead><tr><th>Index/Stock</th><th>Value</th><th>Daily Change</th></tr></thead>
+      <tbody>
+        <tr><td>S&P 500</td><td id="sp500">—</td><td id="sp500c">—</td></tr>
+        <tr><td>Nasdaq</td><td id="nasdaq">—</td><td id="nasdaqc">—</td></tr>
+        <tr><td>Apple (AAPL)</td><td id="aapl">—</td><td id="aaplc">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
-            <div class="market-list">
-                <h3><i class="fas fa-chart-line"></i> Major Stock Indices</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Index/Stock</th>
-                            <th>Value</th>
-                            <th>Daily Change</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>S&P 500</td>
-                            <td>5,150.90</td>
-                            <td class="change-up"><i class="fas fa-caret-up"></i> +0.45%</td>
-                        </tr>
-                        <tr>
-                            <td>Nasdaq</td>
-                            <td>16,100.25</td>
-                            <td class="change-down"><i class="fas fa-caret-down"></i> -0.12%</td>
-                        </tr>
-                        <tr>
-                            <td>Apple (AAPL)</td>
-                            <td>$185.30</td>
-                            <td class="change-up"><i class="fas fa-caret-up"></i> +1.15%</td>
-                        </tr>
-                        <tr>
-                            <td>Amazon (AMZN)</td>
-                            <td>$178.65</td>
-                            <td class="change-up"><i class="fas fa-caret-up"></i> +0.78%</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-        
-        <h2 id="partnerships">🤝 Pi Ecosystem Partnerships</h2>
-        
-        <div class="reputa-card">
-            <img src="1000000219.png" alt="REPUTA Logo">
-            <div class="reputa-content">
-                <h3>REPUTA SCORE: Decentralized Credit</h3>
-                <p>
-                    **REPUTA** is a token focused on measuring **reputation and reliability**, built for decentralized credit experiences and rating methodologies. It was issued on the **Pi Testnet** for testing and integration with Wallets and Pi DEX.
-                </p>
-                <a href="https://reputa3833.pinet.com" target="_blank" class="reputa-link">
-                    <i class="fas fa-arrow-right"></i> Visit REPUTA Website
-                </a>
-            </div>
-        </div>
+<h2 id="partnersTitle">🤝 Pi Ecosystem Partners</h2>
 
-        <section class="partnerships-section">
-            <h3 style="color: var(--text-light); font-size: 1.8em; margin-bottom: 40px;">Integrated Pi Apps</h3>
-            <div class="partnerships-grid">
-                
-                <a href="https://fastdeliveryaffd0592.pinet.com" target="_blank" class="partner-card">
-                    <i class="fas fa-shipping-fast"></i>
-                    <h4>FastDelivery</h4>
-                    <span>Logistics & Shipping</span>
-                </a>
+<div class="reputa-card fade-in">
+  <img id="reputaLogo" src="https://mediceberg.github.io/RP/logo.png">
+  <div class="reputa-content">
+    <h3 id="reputaTitle">REPUTA SCORE: Decentralized Reputation</h3>
+    <p id="reputaDesc">REPUTA token for reputation & reliability on Pi Testnet.</p>
+    <a class="reputa-link" href="https://reputa3833.pinet.com" target="_blank" id="reputaBtn">Visit REPUTA</a>
+  </div>
+</div>
 
-                <a href="https://trustlesscircle0036.pinet.com" target="_blank" class="partner-card">
-                    <i class="fas fa-users-cog"></i>
-                    <h4>Trustless Circle</h4>
-                    <span>Decentralized Trust</span>
-                </a>
+<section class="partnerships-section">
+  <div class="partnerships-grid">
+    <a class="partner-card" href="https://fastdeliveryaffd0592.pinet.com" target="_blank"><i class="fas fa-shipping-fast"></i><h4>FastDelivery</h4><span>Logistics</span></a>
+    <a class="partner-card" href="https://trustlesscircle0036.pinet.com" target="_blank"><i class="fas fa-users-cog"></i><h4>Trustless Circle</h4><span>Decentralized Trust</span></a>
+    <a class="partner-card" href="https://smartpaybfdddefd7151.pinet.com" target="_blank"><i class="fas fa-credit-card"></i><h4>SmartPay</h4><span>Crypto Payment</span></a>
+    <a class="partner-card" href="https://technewseaadcfd8835.pinet.com" target="_blank"><i class="fas fa-globe"></i><h4>TechNews</h4><span>Main App</span></a>
+  </div>
+</section>
 
-                <a href="https://smartpaybfdddefd7151.pinet.com" target="_blank" class="partner-card">
-                    <i class="fas fa-credit-card"></i>
-                    <h4>SmartPay</h4>
-                    <span>Crypto Payments</span>
-                </a>
+<h2 id="newsTitle">📰 Latest News</h2>
+<div class="news-grid" id="newsGrid">
+  <div class="news-card" data-en-title="Bitcoin hits $70k" data-en-desc="Institutional adoption drives price up." data-ar-title="البيتكوين يصل إلى 70 ألف $" data-ar-desc="اعتماد المؤسسات يؤدي إلى ارتفاع الأسعار.">
+    <h4>Bitcoin hits $70k</h4><p>Institutional adoption drives price up.</p>
+  </div>
+  <div class="news-card" data-en-title="Google Gemini 2.5 Launch" data-en-desc="New AI capabilities." data-ar-title="إطلاق Google Gemini 2.5" data-ar-desc="قدرات جديدة في الذكاء الاصطناعي.">
+    <h4>Google Gemini 2.5 Launch</h4><p>New AI capabilities.</p>
+  </div>
+  <div class="news-card" data-en-title="US Inflation Impact" data-en-desc="Reviewing impact on global stocks." data-ar-title="تأثير التضخم الأمريكي" data-ar-desc="مراجعة تأثيره على الأسهم العالمية.">
+    <h4>US Inflation Impact</h4><p>Reviewing impact on global stocks.</p>
+  </div>
+  <div class="news-card" data-en-title="Pi Network Updates" data-en-desc="Mainnet launch guidelines announced." data-ar-title="تحديثات Pi Network" data-ar-desc="إعلان إرشادات إطلاق Mainnet.">
+    <h4>Pi Network Updates</h4><p>Mainnet launch guidelines announced.</p>
+  </div>
+</div>
 
-            </div>
-        </section>
+</div>
 
-        <h2 id="news">📰 Latest News Headlines</h2>
-        <div class="news-grid">
-            
-            <div class="news-card"><h4>Crypto: Bitcoin Breaks $70k Barrier - Is the Bull Run Starting?</h4><p>Analysts predict a major surge following the institutional adoption of spot ETF funds. Detailed market outlook included.</p></div>
-            <div class="news-card"><h4>Technology: Google Launches Gemini 2.5 - New AI Capabilities Unveiled</h4><p>A comprehensive review of the new AI model's impressive ability to process visual, video, and textual content.</p></div>
-            <div class="news-card"><h4>Finance: US Inflation Report Watch - Impact on Global Stock Market Indices</h4><p>An economic overview of the Federal Reserve's interest rate decisions and their effect on major stock exchanges.</p></div>
-            <div class="news-card"><h4>Pi Network: Core Team Provides Crucial Updates on Open Mainnet Launch</h4><p>New guidelines regarding KYC procedures and technical preparations for the network's next pivotal phase.</p></div>
-            
-        </div>
+<footer>
+<p>TechNews &copy; 2025 | Mediceberg</p>
+</footer>
 
-    </div>
+<script>
+// Live crypto fetch from CoinGecko
+const cryptoIds = ['bitcoin','ethereum','solana'];
+function formatUSD(n){ return n==null ? '—' : '$'+Number(n).toLocaleString(undefined,{maximumFractionDigits:2}); }
+function round(n,dec=2){ return Math.round((n||0)*Math.pow(10,dec))/Math.pow(10,dec); }
+async function fetchCrypto(){
+  const ids = cryptoIds.join('%2C');
+  const endpoint = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${ids}&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h`;
+  try{const r=await fetch(endpoint);const data=await r.json();renderCrypto(data);}
+  catch(e){console.error(e); renderCrypto([]);}
+}
+function renderCrypto(list){
+  const tbody = document.getElementById('cryptoRows'); tbody.innerHTML='';
+  if(!list || list.length===0){list=[
+    {name:'Bitcoin',symbol:'BTC',current_price:70500.23,price_change_percentage_24h:1.56,image:''},
+    {name:'Ethereum',symbol:'ETH',current_price:4120.78,price_change_percentage_24h:-0.89,image:''},
+    {name:'Solana',symbol:'SOL',current_price:152.45,price_change_percentage_24h:-1.25,image:''}
+  ];}
+  list.forEach(c=>{
+    const tr=document.createElement('tr');
+    const change=c.price_change_percentage_24h||0;
+    const cls=change>=0?'change-up':'change-down';
+    tr.innerHTML=`<td style="display:flex;gap:12px;align-items:center;justify-content:flex-end"><div><div style='font-weight:700'>${c.name||'—'}</div><div style='color:var(--text-dim);font-size:0.85rem'>${(c.symbol||'').toUpperCase()}</div></div><div style="width:36px;height:36px;border-radius:8px;overflow:hidden;background:#0b0f19;margin-left:12px"><img src="${c.image||''}" alt="${c.symbol||''}" style="width:100%;height:100%;object-fit:contain" onerror="this.parentNode.textContent='${(c.symbol||'').toUpperCase()}';this.style.display='none'"></div></td><td>${formatUSD(c.current_price)}</td><td class='${cls}'>${(change>=0?'+':'')}${round(change,2)}%</td>`;
+    tbody.appendChild(tr);
+  });
+}
+fetchCrypto(); setInterval(fetchCrypto,30000);
 
-    <footer>
-        <p>TechNews | Your Source for Tech & Financial Intelligence &copy; 2025</p>
-    </footer>
+// Language switch
+const langBtn = document.getElementById('langBtn');
+let currentLang = 'en';
+
+const texts = {
+  en:{
+    home:'Home', markets:'Markets', partners:'Partners', news:'News',
+    ctaTitle:'Future of finance, powered by tech.', ctaDesc:'Get live updates on crypto, stocks and tech.', ctaBtn:'Open TechNews on Pi Browser',
+    marketsTitle:'📊 Global Markets', marketsDesc:'Sample data: crypto from CoinGecko, stocks illustrative.', cryptoTitle:'Top Cryptos', stocksTitle:'Top Stocks',
+    partnersTitle:'🤝 Pi Ecosystem Partners',
+    reputaTitle:'REPUTA SCORE: Decentralized Reputation', reputaDesc:'REPUTA token for reputation & reliability on Pi Testnet.', reputaBtn:'Visit REPUTA',
+    newsTitle:'📰 Latest News'
+  },
+  ar:{
+    home:'الرئيسية', markets:'الأسواق', partners:'الشركاء', news:'الأخبار',
+    ctaTitle:'مستقبل التمويل، مدعوم بالتكنولوجيا.', ctaDesc:'احصل على تحديثات فورية حول العملات الرقمية، الأسهم والتقنية.', ctaBtn:'افتح TechNews على Pi Browser',
+    marketsTitle:'📊 الأسواق العالمية', marketsDesc:'البيانات أدناه: العملات الرقمية مباشرة من CoinGecko، والأسهم مثال توضيحي.', cryptoTitle:'أهم العملات الرقمية', stocksTitle:'أهم الأسهم',
+    partnersTitle:'🤝 شركاء Pi Ecosystem',
+    reputaTitle:'REPUTA SCORE: السمعة اللامركزية', reputaDesc:'توكين REPUTA للسمعة والموثوقية على Pi Testnet.', reputaBtn:'زيارة REPUTA',
+    newsTitle:'📰 آخر الأخبار'
+  }
+};
+
+langBtn.addEventListener('click',()=>{
+  currentLang = currentLang==='en'?'ar':'en';
+  document.body.dir = currentLang==='ar'?'rtl':'ltr';
+  langBtn.textContent = currentLang==='en'?'AR':'EN';
+  // header links
+  document.querySelectorAll('.nav-links a[data-key]').forEach(a=>{
+    const key=a.getAttribute('data-key'); a.textContent=texts[currentLang][key];
+  });
+  document.getElementById('ctaTitle').textContent=texts[currentLang].ctaTitle;
+  document.getElementById('ctaDesc').textContent=texts[currentLang].ctaDesc;
+  document.getElementById('ctaBtn').textContent=texts[currentLang].ctaBtn;
+  document.getElementById('marketsTitle').textContent=texts[currentLang].marketsTitle;
+  document.getElementById('marketsDesc').textContent=texts[currentLang].marketsDesc;
+  document.getElementById('cryptoTitle').textContent=texts[currentLang].cryptoTitle;
+  document.getElementById('stocksTitle').textContent=texts[currentLang].stocksTitle;
+  document.getElementById('partnersTitle').textContent=texts[currentLang].partnersTitle;
+  document.getElementById('reputaTitle').textContent=texts[currentLang].reputaTitle;
+  document.getElementById('reputaDesc').textContent=texts[currentLang].reputaDesc;
+  document.getElementById('reputaBtn').textContent=texts[currentLang].reputaBtn;
+  document.getElementById('newsTitle').textContent=texts[currentLang].newsTitle;
+  // news cards
+  document.querySelectorAll('.news-card').forEach(card=>{
+    card.querySelector('h4').textContent = card.getAttribute(`data-${currentLang}-title`);
+    card.querySelector('p').textContent = card.getAttribute(`data-${currentLang}-desc`);
+  });
+});
+</script>
 
 </body>
 </html>
