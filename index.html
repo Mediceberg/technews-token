@@ -1,11 +1,12 @@
 <!doctype html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TechNews / أخبار التقنية</title>
+<title>TechNews — الأسواق الحية والأخبار</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <style>
 :root{
   --primary-blue:#007bff; --secondary-vibrant:#50e3c2; --background-dark:#1e1e2f; --card-dark:#27293d; --text-light:#e8eef7; --text-dim:#b5b5c3;
@@ -40,7 +41,7 @@ header{background:var(--card-dark);box-shadow:var(--shadow);padding:18px 0;posit
 .market-list h3{color:var(--secondary-vibrant);border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:12px}
 table{width:100%;border-collapse:collapse}
 th,td{padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
-th{text-align:left}
+th{color:var(--text-dim);text-align:left}
 .change-up{color:var(--success);font-weight:700}
 .change-down{color:var(--danger);font-weight:700}
 
@@ -72,52 +73,57 @@ footer{text-align:center;padding:30px 0;background:var(--background-dark);color:
 .fade-in{animation:fadeIn .6s ease both}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
-body[dir="rtl"] .navbar .nav-links a{margin-left:18px;margin-right:0}
-body[dir="rtl"] .market-list h3, body[dir="rtl"] .main-content h2{border-right:none;border-left:5px solid var(--secondary-vibrant);padding-right:0;padding-left:15px}
+@media (max-width:900px){.market-section{flex-direction:column}.logo-section h1{font-size:1.2rem}}
 </style>
 </head>
+
 <body>
 
 <header>
  <div class="container navbar">
    <div class="logo-section">
      <img id="siteLogo" src="https://mediceberg.github.io/RP/logo.png" alt="TechNews Logo">
-     <h1 id="siteTitle">TechNews</h1>
+     <h1>TechNews</h1>
    </div>
    <nav class="nav-links">
-     <a href="#" data-key="home">Home</a>
-     <a href="#markets" data-key="markets">Markets</a>
-     <a href="#partnerships" data-key="partners">Partners</a>
-     <a href="#news" data-key="news">News</a>
-     <a href="#" class="lang-toggle" id="langBtn">AR</a>
+     <a href="#">الرئيسية</a>
+     <a href="#markets">الأسواق</a>
+     <a href="#partnerships">الشركاء</a>
+     <a href="#news">الأخبار</a>
+     <a href="index.html" class="lang-toggle"><i class="fas fa-globe"></i>&nbsp;EN</a>
    </nav>
  </div>
 </header>
 
 <section class="cta-section">
  <div class="container">
-   <h2 id="ctaTitle">Future of finance, powered by tech.</h2>
-   <p id="ctaDesc">Get live updates on crypto, stocks and tech.</p>
-   <a class="cta-button" href="https://technewseaadcfd8835.pinet.com" target="_blank" id="ctaBtn">Open TechNews on Pi Browser</a>
+   <h2>مستقبل التمويل، مدعوم بالتكنولوجيا.</h2>
+   <p>احصل على تحديثات فورية حول العملات الرقمية، الأسهم والتقنية.</p>
+   <a class="cta-button" href="https://technewseaadcfd8835.pinet.com" target="_blank"><i class="fas fa-bolt"></i>&nbsp; افتح TechNews على Pi Browser</a>
  </div>
 </section>
 
 <div class="container main-content">
-<h2 id="marketsTitle">📊 Global Markets</h2>
-<p style="color:var(--danger);font-style:italic" id="marketsDesc">Sample data: crypto from CoinGecko, stocks illustrative.</p>
+
+<h2 id="markets">📊 الأسواق العالمية</h2>
+<p style="color:var(--danger);font-style:italic">البيانات أدناه: العملات الرقمية مباشرة من CoinGecko، والأسهم مثال توضيحي.</p>
 
 <section class="market-section">
+
   <div class="market-list fade-in">
-    <h3><i class="fas fa-coins"></i> <span id="cryptoTitle">Top Cryptos</span></h3>
+    <h3><i class="fas fa-coins"></i> أهم العملات الرقمية</h3>
     <table>
-      <thead><tr><th>Asset</th><th>Price ($)</th><th>24h Change</th></tr></thead>
+      <thead>
+        <tr><th>الأصل</th><th>السعر ($)</th><th>تغير 24س</th></tr>
+      </thead>
       <tbody id="cryptoRows"></tbody>
     </table>
   </div>
+
   <div class="market-list fade-in">
-    <h3><i class="fas fa-chart-line"></i> <span id="stocksTitle">Top Stocks</span></h3>
+    <h3><i class="fas fa-chart-line"></i> مؤشرات الأسهم الرئيسية</h3>
     <table>
-      <thead><tr><th>Index/Stock</th><th>Value</th><th>Daily Change</th></tr></thead>
+      <thead><tr><th>المؤشر/السهم</th><th>القيمة</th><th>التغير اليومي</th></tr></thead>
       <tbody>
         <tr><td>S&P 500</td><td id="sp500">—</td><td id="sp500c">—</td></tr>
         <tr><td>Nasdaq</td><td id="nasdaq">—</td><td id="nasdaqc">—</td></tr>
@@ -125,42 +131,35 @@ body[dir="rtl"] .market-list h3, body[dir="rtl"] .main-content h2{border-right:n
       </tbody>
     </table>
   </div>
+
 </section>
 
-<h2 id="partnersTitle">🤝 Pi Ecosystem Partners</h2>
+<h2 id="partnerships">🤝 شركاء Pi Ecosystem</h2>
 
 <div class="reputa-card fade-in">
   <img id="reputaLogo" src="https://mediceberg.github.io/RP/logo.png">
   <div class="reputa-content">
-    <h3 id="reputaTitle">REPUTA SCORE: Decentralized Reputation</h3>
-    <p id="reputaDesc">REPUTA token for reputation & reliability on Pi Testnet.</p>
-    <a class="reputa-link" href="https://reputa3833.pinet.com" target="_blank" id="reputaBtn">Visit REPUTA</a>
+    <h3>REPUTA SCORE: السمعة اللامركزية</h3>
+    <p>توكين <strong>REPUTA</strong> للسمعة والموثوقية على Pi Testnet.</p>
+    <a class="reputa-link" href="https://reputa3833.pinet.com" target="_blank"><i class="fas fa-arrow-right"></i>&nbsp; زيارة REPUTA</a>
   </div>
 </div>
 
 <section class="partnerships-section">
   <div class="partnerships-grid">
-    <a class="partner-card" href="https://fastdeliveryaffd0592.pinet.com" target="_blank"><i class="fas fa-shipping-fast"></i><h4>FastDelivery</h4><span>Logistics</span></a>
-    <a class="partner-card" href="https://trustlesscircle0036.pinet.com" target="_blank"><i class="fas fa-users-cog"></i><h4>Trustless Circle</h4><span>Decentralized Trust</span></a>
-    <a class="partner-card" href="https://smartpaybfdddefd7151.pinet.com" target="_blank"><i class="fas fa-credit-card"></i><h4>SmartPay</h4><span>Crypto Payment</span></a>
-    <a class="partner-card" href="https://technewseaadcfd8835.pinet.com" target="_blank"><i class="fas fa-globe"></i><h4>TechNews</h4><span>Main App</span></a>
+    <a class="partner-card" href="https://fastdeliveryaffd0592.pinet.com" target="_blank"><i class="fas fa-shipping-fast"></i><h4>FastDelivery</h4><span>الخدمات اللوجستية</span></a>
+    <a class="partner-card" href="https://trustlesscircle0036.pinet.com" target="_blank"><i class="fas fa-users-cog"></i><h4>Trustless Circle</h4><span>الثقة اللامركزية</span></a>
+    <a class="partner-card" href="https://smartpaybfdddefd7151.pinet.com" target="_blank"><i class="fas fa-credit-card"></i><h4>SmartPay</h4><span>الدفع بالعملات الرقمية</span></a>
+    <a class="partner-card" href="https://technewseaadcfd8835.pinet.com" target="_blank"><i class="fas fa-globe"></i><h4>TechNews</h4><span>التطبيق الرئيسي</span></a>
   </div>
 </section>
 
-<h2 id="newsTitle">📰 Latest News</h2>
-<div class="news-grid" id="newsGrid">
-  <div class="news-card" data-en-title="Bitcoin hits $70k" data-en-desc="Institutional adoption drives price up." data-ar-title="البيتكوين يصل إلى 70 ألف $" data-ar-desc="اعتماد المؤسسات يؤدي إلى ارتفاع الأسعار.">
-    <h4>Bitcoin hits $70k</h4><p>Institutional adoption drives price up.</p>
-  </div>
-  <div class="news-card" data-en-title="Google Gemini 2.5 Launch" data-en-desc="New AI capabilities." data-ar-title="إطلاق Google Gemini 2.5" data-ar-desc="قدرات جديدة في الذكاء الاصطناعي.">
-    <h4>Google Gemini 2.5 Launch</h4><p>New AI capabilities.</p>
-  </div>
-  <div class="news-card" data-en-title="US Inflation Impact" data-en-desc="Reviewing impact on global stocks." data-ar-title="تأثير التضخم الأمريكي" data-ar-desc="مراجعة تأثيره على الأسهم العالمية.">
-    <h4>US Inflation Impact</h4><p>Reviewing impact on global stocks.</p>
-  </div>
-  <div class="news-card" data-en-title="Pi Network Updates" data-en-desc="Mainnet launch guidelines announced." data-ar-title="تحديثات Pi Network" data-ar-desc="إعلان إرشادات إطلاق Mainnet.">
-    <h4>Pi Network Updates</h4><p>Mainnet launch guidelines announced.</p>
-  </div>
+<h2 id="news">📰 آخر الأخبار</h2>
+<div class="news-grid">
+  <div class="news-card"><h4>البيتكوين يصل إلى 70 ألف $</h4><p>اعتماد المؤسسات يؤدي إلى ارتفاع الأسعار.</p></div>
+  <div class="news-card"><h4>إطلاق Google Gemini 2.5</h4><p>قدرات جديدة في الذكاء الاصطناعي.</p></div>
+  <div class="news-card"><h4>تأثير التضخم الأمريكي</h4><p>مراجعة تأثيره على الأسهم العالمية.</p></div>
+  <div class="news-card"><h4>تحديثات Pi Network</h4><p>إعلان إرشادات إطلاق Mainnet.</p></div>
 </div>
 
 </div>
@@ -172,80 +171,41 @@ body[dir="rtl"] .market-list h3, body[dir="rtl"] .main-content h2{border-right:n
 <script>
 // Live crypto fetch from CoinGecko
 const cryptoIds = ['bitcoin','ethereum','solana'];
+
 function formatUSD(n){ return n==null ? '—' : '$'+Number(n).toLocaleString(undefined,{maximumFractionDigits:2}); }
 function round(n,dec=2){ return Math.round((n||0)*Math.pow(10,dec))/Math.pow(10,dec); }
+
 async function fetchCrypto(){
   const ids = cryptoIds.join('%2C');
   const endpoint = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${ids}&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h`;
-  try{const r=await fetch(endpoint);const data=await r.json();renderCrypto(data);}
-  catch(e){console.error(e); renderCrypto([]);}
+  try{
+    const r = await fetch(endpoint);
+    const data = await r.json();
+    renderCrypto(data);
+  }catch(e){ console.error(e); renderCrypto([]); }
 }
+
 function renderCrypto(list){
-  const tbody = document.getElementById('cryptoRows'); tbody.innerHTML='';
-  if(!list || list.length===0){list=[
-    {name:'Bitcoin',symbol:'BTC',current_price:70500.23,price_change_percentage_24h:1.56,image:''},
-    {name:'Ethereum',symbol:'ETH',current_price:4120.78,price_change_percentage_24h:-0.89,image:''},
-    {name:'Solana',symbol:'SOL',current_price:152.45,price_change_percentage_24h:-1.25,image:''}
-  ];}
-  list.forEach(c=>{
-    const tr=document.createElement('tr');
-    const change=c.price_change_percentage_24h||0;
-    const cls=change>=0?'change-up':'change-down';
-    tr.innerHTML=`<td style="display:flex;gap:12px;align-items:center;justify-content:flex-end"><div><div style='font-weight:700'>${c.name||'—'}</div><div style='color:var(--text-dim);font-size:0.85rem'>${(c.symbol||'').toUpperCase()}</div></div><div style="width:36px;height:36px;border-radius:8px;overflow:hidden;background:#0b0f19;margin-left:12px"><img src="${c.image||''}" alt="${c.symbol||''}" style="width:100%;height:100%;object-fit:contain" onerror="this.parentNode.textContent='${(c.symbol||'').toUpperCase()}';this.style.display='none'"></div></td><td>${formatUSD(c.current_price)}</td><td class='${cls}'>${(change>=0?'+':'')}${round(change,2)}%</td>`;
+  const tbody = document.getElementById('cryptoRows');
+  tbody.innerHTML='';
+  if(!list || list.length===0){
+    list = [
+      {name:'Bitcoin',symbol:'BTC',current_price:70500.23,price_change_percentage_24h:1.56,image:''},
+      {name:'Ethereum',symbol:'ETH',current_price:4120.78,price_change_percentage_24h:-0.89,image:''},
+      {name:'Solana',symbol:'SOL',current_price:152.45,price_change_percentage_24h:-1.25,image:''}
+    ];
+  }
+  list.forEach(c => {
+    const tr = document.createElement('tr');
+    const change = c.price_change_percentage_24h || 0;
+    const cls = change>=0?'change-up':'change-down';
+    tr.innerHTML = `<td style="display:flex;gap:12px;align-items:center;justify-content:flex-end"><div><div style='font-weight:700'>${c.name||'—'}</div><div style='color:var(--text-dim);font-size:0.85rem'>${(c.symbol||'').toUpperCase()}</div></div><div style="width:36px;height:36px;border-radius:8px;overflow:hidden;background:#0b0f19;margin-left:12px"><img src="${c.image||''}" alt="${c.symbol||''}" style="width:100%;height:100%;object-fit:contain" onerror="this.parentNode.textContent='${(c.symbol||'').toUpperCase()}';this.style.display='none'"></div></td><td>${formatUSD(c.current_price)}</td><td class='${cls}'>${(change>=0?'+':'')}${round(change,2)}%</td>`;
     tbody.appendChild(tr);
   });
 }
-fetchCrypto(); setInterval(fetchCrypto,30000);
 
-// Language switch
-const langBtn = document.getElementById('langBtn');
-let currentLang = 'en';
-
-const texts = {
-  en:{
-    home:'Home', markets:'Markets', partners:'Partners', news:'News',
-    ctaTitle:'Future of finance, powered by tech.', ctaDesc:'Get live updates on crypto, stocks and tech.', ctaBtn:'Open TechNews on Pi Browser',
-    marketsTitle:'📊 Global Markets', marketsDesc:'Sample data: crypto from CoinGecko, stocks illustrative.', cryptoTitle:'Top Cryptos', stocksTitle:'Top Stocks',
-    partnersTitle:'🤝 Pi Ecosystem Partners',
-    reputaTitle:'REPUTA SCORE: Decentralized Reputation', reputaDesc:'REPUTA token for reputation & reliability on Pi Testnet.', reputaBtn:'Visit REPUTA',
-    newsTitle:'📰 Latest News'
-  },
-  ar:{
-    home:'الرئيسية', markets:'الأسواق', partners:'الشركاء', news:'الأخبار',
-    ctaTitle:'مستقبل التمويل، مدعوم بالتكنولوجيا.', ctaDesc:'احصل على تحديثات فورية حول العملات الرقمية، الأسهم والتقنية.', ctaBtn:'افتح TechNews على Pi Browser',
-    marketsTitle:'📊 الأسواق العالمية', marketsDesc:'البيانات أدناه: العملات الرقمية مباشرة من CoinGecko، والأسهم مثال توضيحي.', cryptoTitle:'أهم العملات الرقمية', stocksTitle:'أهم الأسهم',
-    partnersTitle:'🤝 شركاء Pi Ecosystem',
-    reputaTitle:'REPUTA SCORE: السمعة اللامركزية', reputaDesc:'توكين REPUTA للسمعة والموثوقية على Pi Testnet.', reputaBtn:'زيارة REPUTA',
-    newsTitle:'📰 آخر الأخبار'
-  }
-};
-
-langBtn.addEventListener('click',()=>{
-  currentLang = currentLang==='en'?'ar':'en';
-  document.body.dir = currentLang==='ar'?'rtl':'ltr';
-  langBtn.textContent = currentLang==='en'?'AR':'EN';
-  // header links
-  document.querySelectorAll('.nav-links a[data-key]').forEach(a=>{
-    const key=a.getAttribute('data-key'); a.textContent=texts[currentLang][key];
-  });
-  document.getElementById('ctaTitle').textContent=texts[currentLang].ctaTitle;
-  document.getElementById('ctaDesc').textContent=texts[currentLang].ctaDesc;
-  document.getElementById('ctaBtn').textContent=texts[currentLang].ctaBtn;
-  document.getElementById('marketsTitle').textContent=texts[currentLang].marketsTitle;
-  document.getElementById('marketsDesc').textContent=texts[currentLang].marketsDesc;
-  document.getElementById('cryptoTitle').textContent=texts[currentLang].cryptoTitle;
-  document.getElementById('stocksTitle').textContent=texts[currentLang].stocksTitle;
-  document.getElementById('partnersTitle').textContent=texts[currentLang].partnersTitle;
-  document.getElementById('reputaTitle').textContent=texts[currentLang].reputaTitle;
-  document.getElementById('reputaDesc').textContent=texts[currentLang].reputaDesc;
-  document.getElementById('reputaBtn').textContent=texts[currentLang].reputaBtn;
-  document.getElementById('newsTitle').textContent=texts[currentLang].newsTitle;
-  // news cards
-  document.querySelectorAll('.news-card').forEach(card=>{
-    card.querySelector('h4').textContent = card.getAttribute(`data-${currentLang}-title`);
-    card.querySelector('p').textContent = card.getAttribute(`data-${currentLang}-desc`);
-  });
-});
+fetchCrypto();
+setInterval(fetchCrypto,30000);
 </script>
 
 </body>
